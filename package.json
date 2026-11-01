@@ -1,0 +1,13 @@
+{
+  "name": "sugar-sprint",
+  "version": "1.0.0",
+  "description": "Sugar Sprint: La Búsqueda del Cristal de Caramelo - Playable 3D Isometric Candy Game",
+  "main": "src/main.js",
+  "type": "module",
+  "scripts": {
+    "start": "python3 -m http.server 3000"
+  },
+  "dependencies": {
+    "three": "^0.160.0"
+  }
+}

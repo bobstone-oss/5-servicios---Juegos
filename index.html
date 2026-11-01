@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sugar Sprint: La Búsqueda del Cristal de Caramelo</title>
+    <link rel="stylesheet" href="src/style.css">
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.160.0/build/three.module.js"
+        }
+    }
+    </script>
+</head>
+<body>
+    <div id="game-container"></div>
+
+    <div id="ui-container">
+        <div id="hud">
+            <div class="hud-card level-badge">
+                <span id="level-title">MUNDO 1: BOSQUE DE ALGODÓN DE AZÚCAR</span>
+            </div>
+
+            <div class="hud-card health-bar">
+                <span class="hud-label">DULZOR:</span>
+                <div id="hearts-container">
+                    <span class="heart active">❤️</span>
+                    <span class="heart active">❤️</span>
+                    <span class="heart active">❤️</span>
+                </div>
+            </div>
+
+            <div class="hud-card stats-box">
+                <div class="stat-item">
+                    <span class="icon">🍬</span>
+                    <span id="coins-count">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="icon">✨</span>
+                    <span id="sparks-count">0 / 3</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="controls-hint">
+            <p><strong>Controles:</strong> <code>WASD</code> / <code>Flechas</code> : Mover (8 dir) | <code>Espacio</code> : Saltar / Rebote Gelatina | <code>E</code> : Chicletazo</p>
+        </div>
+
+        <div id="overlay" class="hidden">
+            <div class="modal">
+                <h1 id="modal-title">¡NIVEL COMPLETADO!</h1>
+                <p id="modal-text">Has recuperado la Esquirla de Caramelo.</p>
+                <button id="modal-btn" class="candy-btn">SIGUIENTE NIVEL</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="src/main.js"></script>
+</body>
+</html>
