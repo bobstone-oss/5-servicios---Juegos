@@ -20,21 +20,60 @@ export class PipoPlayer {
             ior: 1.45
         });
 
-        // Body
-        const bodyGeo = new THREE.CapsuleGeometry(0.4, 0.5, 8, 16);
+        // Body (Gummy Torso)
+        const bodyGeo = new THREE.CapsuleGeometry(0.35, 0.45, 8, 16);
         this.bodyMesh = new THREE.Mesh(bodyGeo, gummyMaterial);
         this.bodyMesh.castShadow = true;
-        this.bodyMesh.position.y = 0.5;
+        this.bodyMesh.position.y = 0.45;
         this.mesh.add(this.bodyMesh);
 
-        // Bear Ears
-        const earGeo = new THREE.SphereGeometry(0.15, 12, 12);
-        const earL = new THREE.Mesh(earGeo, gummyMaterial);
-        earL.position.set(-0.25, 0.9, 0);
-        const earR = new THREE.Mesh(earGeo, gummyMaterial);
-        earR.position.set(0.25, 0.9, 0);
-        this.mesh.add(earL);
-        this.mesh.add(earR);
+        // Bald Head (Glossy, smooth sphere with shiny candy luster)
+        const headGeo = new THREE.SphereGeometry(0.32, 16, 16);
+        this.headMesh = new THREE.Mesh(headGeo, gummyMaterial);
+        this.headMesh.position.set(0, 0.92, 0);
+        this.headMesh.castShadow = true;
+        this.mesh.add(this.headMesh);
+
+        // Big Stylized Candy Beard (Fluffy sweet licorice / spun sugar beard)
+        const beardMat = new THREE.MeshStandardMaterial({
+            color: 0x5c2c16, // rich chocolate / gingerbread beard
+            roughness: 0.4,
+            metalness: 0.1
+        });
+        const beardGeo = new THREE.ConeGeometry(0.3, 0.42, 12);
+        this.beardMesh = new THREE.Mesh(beardGeo, beardMat);
+        this.beardMesh.rotation.x = Math.PI; // point downwards
+        this.beardMesh.position.set(0, 0.72, 0.22);
+        this.mesh.add(this.beardMesh);
+
+        // Moustache
+        const mustacheMat = new THREE.MeshStandardMaterial({ color: 0x3d1a0c, roughness: 0.3 });
+        const stacheGeo = new THREE.TorusGeometry(0.12, 0.04, 8, 12, Math.PI);
+        const stacheMesh = new THREE.Mesh(stacheGeo, mustacheMat);
+        stacheMesh.rotation.z = Math.PI;
+        stacheMesh.position.set(0, 0.88, 0.3);
+        this.mesh.add(stacheMesh);
+
+        // Cute Googly / Candy Eyes
+        const eyeMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
+        const pupilMat = new THREE.MeshBasicMaterial({ color: 0x111111 });
+        const eyeGeo = new THREE.SphereGeometry(0.06, 8, 8);
+        const pupilGeo = new THREE.SphereGeometry(0.03, 8, 8);
+
+        const eyeL = new THREE.Mesh(eyeGeo, eyeMat);
+        eyeL.position.set(-0.12, 0.98, 0.26);
+        const pupL = new THREE.Mesh(pupilGeo, pupilMat);
+        pupL.position.set(-0.12, 0.98, 0.31);
+
+        const eyeR = new THREE.Mesh(eyeGeo, eyeMat);
+        eyeR.position.set(0.12, 0.98, 0.26);
+        const pupR = new THREE.Mesh(pupilGeo, pupilMat);
+        pupR.position.set(0.12, 0.98, 0.31);
+
+        this.mesh.add(eyeL);
+        this.mesh.add(pupL);
+        this.mesh.add(eyeR);
+        this.mesh.add(pupR);
 
         // Shiny metallic candy wrapper cape
         const capeMat = new THREE.MeshStandardMaterial({
@@ -81,7 +120,9 @@ export class PipoPlayer {
         this.scaleCurrent = new THREE.Vector3(1, 1, 1);
 
         this.keys = {};
+        this.touchInputVector = new THREE.Vector2(0, 0);
         this.setupInputs();
+        this.setupTouchControls();
     }
 
     setupInputs() {
@@ -89,21 +130,105 @@ export class PipoPlayer {
             this.keys[e.code] = true;
 
             if (e.code === 'Space') {
-                if (this.isGrounded) {
-                    this.jump();
-                } else if (!this.isSlamming) {
-                    this.gelatinSlam();
-                }
+                this.triggerJumpAction();
             }
 
-            if (e.code === 'KeyE' && !this.isWhipping) {
-                this.chicletazo();
+            if (e.code === 'KeyE') {
+                this.triggerWhipAction();
             }
         });
 
         window.addEventListener('keyup', (e) => {
             this.keys[e.code] = false;
         });
+    }
+
+    triggerJumpAction() {
+        if (this.isGrounded) {
+            this.jump();
+        } else if (!this.isSlamming) {
+            this.gelatinSlam();
+        }
+    }
+
+    triggerWhipAction() {
+        if (!this.isWhipping) {
+            this.chicletazo();
+        }
+    }
+
+    setupTouchControls() {
+        const joystickZone = document.getElementById('joystick-zone');
+        const stick = document.getElementById('joystick-stick');
+        const btnJump = document.getElementById('btn-jump');
+        const btnWhip = document.getElementById('btn-whip');
+
+        if (btnJump) {
+            const handleJump = (e) => {
+                e.preventDefault();
+                this.triggerJumpAction();
+                btnJump.classList.add('pressed');
+                setTimeout(() => btnJump.classList.remove('pressed'), 150);
+            };
+            btnJump.addEventListener('pointerdown', handleJump);
+        }
+
+        if (btnWhip) {
+            const handleWhip = (e) => {
+                e.preventDefault();
+                this.triggerWhipAction();
+                btnWhip.classList.add('pressed');
+                setTimeout(() => btnWhip.classList.remove('pressed'), 150);
+            };
+            btnWhip.addEventListener('pointerdown', handleWhip);
+        }
+
+        if (joystickZone && stick) {
+            let activePointerId = null;
+            let startX = 0;
+            let startY = 0;
+            const maxRadius = 45;
+
+            const onPointerDown = (e) => {
+                activePointerId = e.pointerId;
+                joystickZone.setPointerCapture(e.pointerId);
+                const rect = joystickZone.getBoundingClientRect();
+                startX = rect.left + rect.width / 2;
+                startY = rect.top + rect.height / 2;
+                onPointerMove(e);
+            };
+
+            const onPointerMove = (e) => {
+                if (e.pointerId !== activePointerId) return;
+                const dx = e.clientX - startX;
+                const dy = e.clientY - startY;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+
+                if (dist > 0) {
+                    const clampedDist = Math.min(dist, maxRadius);
+                    const angle = Math.atan2(dy, dx);
+                    const clampedX = Math.cos(angle) * clampedDist;
+                    const clampedY = Math.sin(angle) * clampedDist;
+
+                    stick.style.transform = `translate(${clampedX}px, ${clampedY}px)`;
+
+                    // Normalized vector
+                    this.touchInputVector.set(clampedX / maxRadius, clampedY / maxRadius);
+                }
+            };
+
+            const onPointerUp = (e) => {
+                if (e.pointerId !== activePointerId) return;
+                activePointerId = null;
+                stick.style.transform = `translate(0px, 0px)`;
+                this.touchInputVector.set(0, 0);
+            };
+
+            joystickZone.addEventListener('pointerdown', onPointerDown);
+            joystickZone.addEventListener('pointermove', onPointerMove);
+            joystickZone.addEventListener('pointerup', onPointerUp);
+            joystickZone.addEventListener('pointercancel', onPointerUp);
+        }
     }
 
     jump(force = this.jumpForce) {
@@ -139,6 +264,11 @@ export class PipoPlayer {
         if (this.keys['KeyS'] || this.keys['ArrowDown']) moveDir.z += 1;
         if (this.keys['KeyA'] || this.keys['ArrowLeft']) moveDir.x -= 1;
         if (this.keys['KeyD'] || this.keys['ArrowRight']) moveDir.x += 1;
+
+        if (this.touchInputVector.lengthSq() > 0.04) {
+            moveDir.x += this.touchInputVector.x;
+            moveDir.z += this.touchInputVector.y;
+        }
 
         if (moveDir.lengthSq() > 0) {
             moveDir.normalize();
@@ -211,5 +341,6 @@ export class PipoPlayer {
 
         this.scaleCurrent.lerp(this.scaleTarget, dt * 10);
         this.bodyMesh.scale.copy(this.scaleCurrent);
+        if (this.headMesh) this.headMesh.scale.copy(this.scaleCurrent);
     }
 }

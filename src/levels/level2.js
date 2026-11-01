@@ -29,16 +29,16 @@ export class Level2GummyRiver {
         riverMesh.position.set(0, -2, 20);
         this.group.add(riverMesh);
 
-        this.addPlatform(0, 0, 0, 7, 1, 7, amberMat);
+        this.createFloatingIsland(0, 0, 0, 7, 1, 7, amberMat, 0x4a2e10);
 
-        const raft = this.addPlatform(0, 0, 10, 4, 0.8, 4, jellyMat);
+        const raft = this.createFloatingIsland(0, 0, 10, 4, 0.8, 4, jellyMat, 0x1b5e20);
         raft.isMoving = true;
         raft.startX = -5;
         raft.endX = 5;
         raft.speed = 2.5;
         this.movingPlatforms.push(raft);
 
-        this.addPlatform(0, 1, 20, 6, 1, 6, amberMat);
+        this.createFloatingIsland(0, 1, 20, 6, 1, 6, amberMat, 0x4a2e10);
 
         const stalGeo = new THREE.ConeGeometry(0.5, 2.0, 4);
         for (let i = -2; i <= 2; i += 2) {
@@ -49,8 +49,10 @@ export class Level2GummyRiver {
             this.hazards.push({ mesh: stal, startY: 6, isFalling: false });
         }
 
-        this.addPlatform(0, 2, 30, 8, 1, 8, jellyMat);
-        this.addPlatform(0, 3, 42, 6, 1, 6, amberMat);
+        this.createFloatingIsland(0, 2, 30, 8, 1, 8, jellyMat, 0x1b5e20);
+        this.createFloatingIsland(0, 3, 42, 6, 1, 6, amberMat, 0x4a2e10);
+
+        this.buildClouds();
 
         const coinPositions = [
             [0, 1.2, 3], [0, 2.2, 20], [2, 2.2, 20], [-2, 2.2, 20],
@@ -89,18 +91,64 @@ export class Level2GummyRiver {
         this.group.add(this.goal);
     }
 
-    addPlatform(x, y, z, w, h, d, material) {
-        const geo = new THREE.BoxGeometry(w, h, d);
-        const mesh = new THREE.Mesh(geo, material);
-        mesh.position.set(x, y, z);
-        mesh.receiveShadow = true;
-        mesh.castShadow = true;
-        this.group.add(mesh);
+    createFloatingIsland(x, y, z, w, h, d, topMaterial, rockColor = 0x4a2e10) {
+        const islandGroup = new THREE.Group();
+        islandGroup.position.set(x, y, z);
 
-        const box = new THREE.Box3().setFromObject(mesh);
-        const platform = { mesh, box, isBouncy: false };
+        const topGeo = new THREE.BoxGeometry(w, h, d);
+        const topMesh = new THREE.Mesh(topGeo, topMaterial);
+        topMesh.receiveShadow = true;
+        topMesh.castShadow = true;
+        islandGroup.add(topMesh);
+
+        const rockGeo = new THREE.ConeGeometry(Math.min(w, d) * 0.65, 3.2, 5);
+        const rockMat = new THREE.MeshStandardMaterial({
+            color: rockColor,
+            roughness: 0.9,
+            flatShading: true
+        });
+        const rockMesh = new THREE.Mesh(rockGeo, rockMat);
+        rockMesh.rotation.x = Math.PI;
+        rockMesh.position.set(0, -1.8, 0);
+        rockMesh.castShadow = true;
+        islandGroup.add(rockMesh);
+
+        this.group.add(islandGroup);
+
+        const box = new THREE.Box3().setFromObject(topMesh);
+        const platform = { mesh: islandGroup, topMesh, box, isBouncy: false };
         this.platforms.push(platform);
         return platform;
+    }
+
+    buildClouds() {
+        this.clouds = [];
+        const cloudMat = new THREE.MeshStandardMaterial({
+            color: 0xffffff,
+            roughness: 0.2,
+            metalness: 0.05,
+            transparent: true,
+            opacity: 0.8
+        });
+
+        const cloudPuffs = [
+            [-16, -2, 8], [17, 0, 16], [-19, 3, 26], [18, 2, 36], [-14, 4, 44]
+        ];
+
+        for (const [cx, cy, cz] of cloudPuffs) {
+            const cloudGroup = new THREE.Group();
+            cloudGroup.position.set(cx, cy, cz);
+
+            for (let i = 0; i < 3; i++) {
+                const r = 2.0 + Math.random() * 1.5;
+                const puff = new THREE.Mesh(new THREE.SphereGeometry(r, 10, 10), cloudMat);
+                puff.position.set((Math.random() - 0.5) * 3, 0, (Math.random() - 0.5) * 3);
+                cloudGroup.add(puff);
+            }
+
+            this.group.add(cloudGroup);
+            this.clouds.push(cloudGroup);
+        }
     }
 
     update(dt) {
@@ -109,7 +157,13 @@ export class Level2GummyRiver {
             if (plat.mesh.position.x > plat.endX || plat.mesh.position.x < plat.startX) {
                 plat.speed = -plat.speed;
             }
-            plat.box.setFromObject(plat.mesh);
+            plat.box.setFromObject(plat.topMesh || plat.mesh);
+        }
+
+        if (this.clouds) {
+            for (let i = 0; i < this.clouds.length; i++) {
+                this.clouds[i].position.x += Math.sin(Date.now() * 0.001 + i) * dt * 0.3;
+            }
         }
 
         for (const coin of this.coins) coin.rotation.z += 2.0 * dt;

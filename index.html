@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Sugar Sprint: La Búsqueda del Cristal de Caramelo</title>
     <link rel="stylesheet" href="src/style.css">
     <script type="importmap">
@@ -43,8 +43,21 @@
             </div>
         </div>
 
+        <!-- Mobile Touch Controls -->
+        <div id="touch-controls">
+            <div id="joystick-zone">
+                <div id="joystick-base">
+                    <div id="joystick-stick"></div>
+                </div>
+            </div>
+            <div id="touch-action-buttons">
+                <button id="btn-whip" class="touch-btn" aria-label="Chicletazo">🍬 <span>Chicletazo</span></button>
+                <button id="btn-jump" class="touch-btn" aria-label="Salto / Rebote">🦘 <span>Salto</span></button>
+            </div>
+        </div>
+
         <div id="controls-hint">
-            <p><strong>Controles:</strong> <code>WASD</code> / <code>Flechas</code> : Mover (8 dir) | <code>Espacio</code> : Saltar / Rebote Gelatina | <code>E</code> : Chicletazo</p>
+            <p><strong>Controles:</strong> <code>WASD</code> / <code>Joystick Táctil</code> : Mover | <code>Espacio</code> / <code>Botón Salto</code> : Saltar / Rebote Gelatina | <code>E</code> / <code>Botón Chicletazo</code> : Estirar</p>
         </div>
 
         <div id="overlay" class="hidden">

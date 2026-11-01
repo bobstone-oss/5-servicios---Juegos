@@ -22,10 +22,10 @@ Cuando respondas o generes especificaciones para este proyecto, mantén una term
 
 ### **2. Prompts de Generación de Arte 3D y Concept Art (Midjourney v6 / DALL-E 3)**
 
-#### **2.1 Protagonista: Pipo, el Osito de Gominola Rojo**
+#### **2.1 Protagonista: Pipo, el Aventurero de Gominola Calvo con Barba**
 ```text
 PROMPT MIDJOURNEY / DALL-E 3:
-3D isometric character render of a cute strawberry gummy bear hero named Pipo, hyper-glossy translucent red jelly material, sub-surface scattering lighting, wearing a tiny cape made of shiny metallic candy wrapper and a small waffle-textured backpack. Candy Crush Saga art style, studio lighting, soft pastel shadows, octane render, 8k resolution, ultra-detailed candy texture, vibrant chromatic color palette, transparent background --ar 1:1 --v 6.0
+3D isometric character render of Pipo, a brave stylized bald adventurer hero made of hyper-glossy translucent strawberry red jelly gummy material, completely smooth and shiny bald head reflecting studio highlights, lush sculpted dark chocolate and licorice beard with a curly confectionery moustache, glossy candy eyes, wearing a tiny cape made of shiny metallic gold candy wrapper and a small waffle-textured backpack. Jumping across floating candy islands with clouds, Candy Crush Saga and Super Mario 3D World mobile game art style, studio lighting, soft pastel shadows, octane render, 8k resolution, ultra-detailed candy texture, vibrant chromatic color palette --ar 1:1 --v 6.0
 ```
 
 #### **2.2 Villano: Lord Salitre**

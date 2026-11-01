@@ -83,7 +83,10 @@ El jugador encarna a **Pipo**, el osito de gominola rojo más elástico y optimi
 | **Lord Salitre** | Villano / Boss Final | Cristal de Sal Marina grisáceo opaco, Armadura de Carbón Dulce | *Ráfaga Salina* (Rayos deshidratantes), Invocación de Minions de Sal |
 | **Minions Salinos** | Enemigos Menores | Cubos de sal áspera con púas | Embestida rectilínea simple |
 
-#### **3.1 Protagonista: Pipo**
+#### **3.1 Protagonista: Pipo (Aventurero de Gominola Calvo con Barba)**
+* **Arquetipo y Aspecto**: Figura de gominola sabor fresa hiperbrillante y translúcida con cabeza calva reflectante de caramelo pulido, barba prominente y bigote esculpido en chocolate y regaliz, ojos de azúcar glaseado y capa dorada de papel de bombón con física reactiva.
+* **Entorno y Plataformas**: Islas flotantes tridimensionales suspendidas sobre un vasto océano de nubes esponjosas de malvavisco y confeti en deriva continua.
+* **Controles Móviles & Touch**: Soporte completo para dispositivos móviles mediante joystick táctil dinámico 360° y botones dedicados en pantalla táctil con respuesta inmediata.
 * **Dimensiones Hitbox**: Cápsula de $0.8 \times 1.2$ unidades.
 * **Propiedades de Física**:
   * Velocidad Máxima: $8.0 \text{ unidades/s}$.
@@ -92,7 +95,7 @@ El jugador encarna a **Pipo**, el osito de gominola rojo más elástico y optimi
   * Fuerza de Salto Base: $10.0 \text{ m/s}$.
   * Gravedad Personalizada: $25.0 \text{ m/s}^2$.
 * **Mecánicas Clave**:
-  1. **Rebote de Gelatina (Slam)**: Al presionar 'Barra Espaciadora' o 'Shift' en el aire, Pipo se comprime y cae velozmente. Al golpear superficies o enemigos, inflige daño de área y sale despedido a doble altura.
+  1. **Rebote de Gelatina (Slam)**: Al presionar 'Barra Espaciadora' o botón táctil de salto en el aire, Pipo se comprime y cae velozmente. Al golpear superficies o enemigos, inflige daño de área y sale despedido a doble altura.
   2. **Chicletazo (Elastic Whip)**: Estira su brazo elástico hacia el frente (rango: 4.0 unidades) para recoger ítems distantes o activar palancas de caramelo duro.
 
 #### **3.2 Villano: Lord Salitre**

@@ -23,19 +23,21 @@ export class Level3DarkChocolatePeak {
         const saltMat = new THREE.MeshStandardMaterial({ color: 0xd0d0d0, roughness: 0.9 });
         const sparkMat = new THREE.MeshStandardMaterial({ color: 0x00ffff, roughness: 0.1, emissive: 0x008888 });
 
-        this.addPlatform(0, 0, 0, 6, 1, 6, chocolateMat);
+        this.createFloatingIsland(0, 0, 0, 6, 1, 6, chocolateMat, 0x221208);
 
-        const wafer1 = this.addPlatform(0, 0, 8, 4, 0.4, 4, waferMat);
+        const wafer1 = this.createFloatingIsland(0, 0, 8, 4, 0.4, 4, waferMat, 0x5c3a21);
         wafer1.isCrumbling = true;
         wafer1.timer = 1.5;
         this.crumblingPlatforms.push(wafer1);
 
-        const wafer2 = this.addPlatform(0, 1, 15, 4, 0.4, 4, waferMat);
+        const wafer2 = this.createFloatingIsland(0, 1, 15, 4, 0.4, 4, waferMat, 0x5c3a21);
         wafer2.isCrumbling = true;
         wafer2.timer = 1.5;
         this.crumblingPlatforms.push(wafer2);
 
-        this.addPlatform(0, 2, 28, 14, 1, 14, chocolateMat);
+        this.createFloatingIsland(0, 2, 28, 14, 1, 14, chocolateMat, 0x221208);
+
+        this.buildClouds();
 
         const bossGroup = new THREE.Group();
         const bossBodyGeo = new THREE.DodecahedronGeometry(1.2);
@@ -85,21 +87,72 @@ export class Level3DarkChocolatePeak {
         this.group.add(this.goal);
     }
 
-    addPlatform(x, y, z, w, h, d, material) {
-        const geo = new THREE.BoxGeometry(w, h, d);
-        const mesh = new THREE.Mesh(geo, material);
-        mesh.position.set(x, y, z);
-        mesh.receiveShadow = true;
-        mesh.castShadow = true;
-        this.group.add(mesh);
+    createFloatingIsland(x, y, z, w, h, d, topMaterial, rockColor = 0x221208) {
+        const islandGroup = new THREE.Group();
+        islandGroup.position.set(x, y, z);
 
-        const box = new THREE.Box3().setFromObject(mesh);
-        const platform = { mesh, box, isBouncy: false };
+        const topGeo = new THREE.BoxGeometry(w, h, d);
+        const topMesh = new THREE.Mesh(topGeo, topMaterial);
+        topMesh.receiveShadow = true;
+        topMesh.castShadow = true;
+        islandGroup.add(topMesh);
+
+        const rockGeo = new THREE.ConeGeometry(Math.min(w, d) * 0.65, 3.8, 5);
+        const rockMat = new THREE.MeshStandardMaterial({
+            color: rockColor,
+            roughness: 0.95,
+            flatShading: true
+        });
+        const rockMesh = new THREE.Mesh(rockGeo, rockMat);
+        rockMesh.rotation.x = Math.PI;
+        rockMesh.position.set(0, -2.1, 0);
+        rockMesh.castShadow = true;
+        islandGroup.add(rockMesh);
+
+        this.group.add(islandGroup);
+
+        const box = new THREE.Box3().setFromObject(topMesh);
+        const platform = { mesh: islandGroup, topMesh, box, isBouncy: false };
         this.platforms.push(platform);
         return platform;
     }
 
+    buildClouds() {
+        this.clouds = [];
+        const cloudMat = new THREE.MeshStandardMaterial({
+            color: 0xefdcd5,
+            roughness: 0.3,
+            metalness: 0.05,
+            transparent: true,
+            opacity: 0.75
+        });
+
+        const cloudPuffs = [
+            [-18, -3, 6], [18, -1, 14], [-20, 1, 24], [20, 2, 34], [-15, 3, 40]
+        ];
+
+        for (const [cx, cy, cz] of cloudPuffs) {
+            const cloudGroup = new THREE.Group();
+            cloudGroup.position.set(cx, cy, cz);
+
+            for (let i = 0; i < 3; i++) {
+                const r = 2.2 + Math.random() * 1.5;
+                const puff = new THREE.Mesh(new THREE.SphereGeometry(r, 10, 10), cloudMat);
+                puff.position.set((Math.random() - 0.5) * 3, 0, (Math.random() - 0.5) * 3);
+                cloudGroup.add(puff);
+            }
+
+            this.group.add(cloudGroup);
+            this.clouds.push(cloudGroup);
+        }
+    }
+
     update(dt, player) {
+        if (this.clouds) {
+            for (let i = 0; i < this.clouds.length; i++) {
+                this.clouds[i].position.x += Math.sin(Date.now() * 0.001 + i) * dt * 0.3;
+            }
+        }
         if (this.boss && !this.boss.isDefeated) {
             this.boss.group.rotation.y += 1.0 * dt;
 
