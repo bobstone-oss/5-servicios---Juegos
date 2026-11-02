@@ -52,6 +52,12 @@ PROMPT MIDJOURNEY / DALL-E 3:
 Isometric 3D game level climax stage of Dark Chocolate Peak. Hot molten chocolate waterfalls, rich truffle brown terrain with golden leaf accents, crispy waffle floor tiles cracking over crimson syrup, cinnamon steam geysers, dramatic epic candy boss arena, hyper-detailed food texture, octane render --ar 16:9 --v 6.0
 ```
 
+#### **2.6 Mapa de Dulcelandia / Selector de Islas con Desbloqueo de Monedas**
+```text
+PROMPT MIDJOURNEY / DALL-E 3:
+3D isometric overworld map of floating candy islands interconnected by rainbow syrup bridges in a pastel cloud sky. Island 1 with pink cotton candy trees unlocked, Island 2 with lime jelly rivers locked behind a golden candy padlock with a 50 coins tag, Island 3 dark chocolate volcano locked with 120 coins tag. Mobile casual puzzle game map screen, juicy game feel, bright saturated candy palette, octane render 8k --ar 16:9 --v 6.0
+```
+
 ---
 
 ### **3. Prompts para Generación de Audio y Música (Stable Audio / Suno / Udio)**

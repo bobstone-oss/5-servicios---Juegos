@@ -108,9 +108,16 @@ El jugador encarna a **Pipo**, el osito de gominola rojo más elástico y optimi
 
 ### **4. Mecánicas de Juego, Economía e Interacción**
 
-#### **4.1 Coleccionables**
+#### **4.1 Meta-Progresión y Sistema de Desbloqueo de Islas**
+El juego incorpora una economía circular de persistencia (`localStorage: sugarsprint_save`) donde las monedas recolectadas permiten comprar el acceso a nuevas islas flotantes en el **Mapa de Dulcelandia**:
+* **Isla 1 (Bosque de Algodón)**: Desbloqueada por defecto ($0 \text{ monedas}$).
+* **Isla 2 (Río de Gominola)**: Requiere $50 \text{ Bolitas de Anís}$ para retirar el candado de caramelo amargo.
+* **Isla 3 (Cumbre de Chocolate Negro)**: Requiere $120 \text{ Bolitas de Anís}$ para abrir el portal volcánico a la guarida de Lord Salitre.
+* **Recompensa por Victoria**: Superar cualquier nivel otorga un bonus estelar de $+30 \text{ Bolitas de Anís}$ directas a la cartera del jugador, incentivando la rejugabilidad para desbloquear las etapas superiores.
+
+#### **4.2 Coleccionables**
 * **Bolitas de Anís (Moneda Común)**:
-  * Valor: +10 puntos.
+  * Valor: +10 puntos y moneda de curso legal para desbloqueo de islas.
   * Ubicación: Línea dorada de guiado por todo el nivel.
 * **Chispas Dulces (Puntos Clave)**:
   * Cantidad: 3 por nivel.

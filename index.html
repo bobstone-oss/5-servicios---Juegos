@@ -40,6 +40,66 @@
                     <span class="icon">✨</span>
                     <span id="sparks-count">0 / 3</span>
                 </div>
+                <button id="btn-open-map" class="map-icon-btn" title="Mapa de Islas">🗺️ Islas</button>
+            </div>
+        </div>
+
+        <!-- Overworld Island Map & Progression Modal -->
+        <div id="island-map-modal" class="hidden">
+            <div class="island-map-card">
+                <div class="island-map-header">
+                    <h2>🗺️ MAPA DE DULCELANDIA</h2>
+                    <p>Usa tus <strong>🍬 Bolitas de Anís</strong> para desbloquear y viajar a nuevas islas.</p>
+                    <div class="island-map-wallet">
+                        <span>Tu Fortuna Dulce: </span>
+                        <strong id="map-wallet-coins">0 🍬</strong>
+                    </div>
+                </div>
+
+                <div class="islands-grid">
+                    <!-- Island 1 -->
+                    <div class="island-slot" id="slot-island-1">
+                        <div class="island-thumb thumb-island-1">☁️🌸</div>
+                        <div class="island-info">
+                            <h3>Isla 1: Bosque de Algodón</h3>
+                            <p class="island-desc">Árboles esponjosos y camas elásticas de malvavisco.</p>
+                            <span class="island-tag unlocked">¡DESBLOQUEADA!</span>
+                        </div>
+                        <button class="island-action-btn select-btn" data-level="1">VIAJAR 🚀</button>
+                    </div>
+
+                    <!-- Island 2 -->
+                    <div class="island-slot" id="slot-island-2">
+                        <div class="island-thumb thumb-island-2">🌊🍮</div>
+                        <div class="island-info">
+                            <h3>Isla 2: Río de Gominola</h3>
+                            <p class="island-desc">Rápidos de jarabe espeso y rocas de ámbar cristalino.</p>
+                            <div class="island-price">
+                                <span>Precio: </span>
+                                <strong>50 🍬</strong>
+                            </div>
+                        </div>
+                        <button class="island-action-btn unlock-btn" data-level="2">DESBLOQUEAR 🔓</button>
+                    </div>
+
+                    <!-- Island 3 -->
+                    <div class="island-slot" id="slot-island-3">
+                        <div class="island-thumb thumb-island-3">🌋🍫</div>
+                        <div class="island-info">
+                            <h3>Isla 3: Cumbre Chocolate</h3>
+                            <p class="island-desc">Fortaleza de Lord Salitre y suelo quebradizo de barquillo.</p>
+                            <div class="island-price">
+                                <span>Precio: </span>
+                                <strong>120 🍬</strong>
+                            </div>
+                        </div>
+                        <button class="island-action-btn unlock-btn" data-level="3">DESBLOQUEAR 🔓</button>
+                    </div>
+                </div>
+
+                <div class="island-map-footer">
+                    <button id="btn-close-map" class="candy-btn close-map-btn">VOLVER AL JUEGO</button>
+                </div>
             </div>
         </div>
 

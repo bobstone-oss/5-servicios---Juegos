@@ -23,14 +23,86 @@ class SugarSprintGame {
         this.particles = new ParticleSystem(this.scene);
         this.hud = new HUDManager();
 
-        this.player = new PipoPlayer(this.scene, this.soundManager, this.particles);
+        this.loadGameState();
 
-        this.currentLevelIndex = 1;
+        this.player = new PipoPlayer(this.scene, this.soundManager, this.particles);
+        this.player.coins = this.state.coins;
+
+        this.currentLevelIndex = this.state.selectedIsland || 1;
         this.currentLevel = null;
         this.clock = new THREE.Clock();
 
-        this.loadLevel(1);
+        this.hud.setupMapControls({
+            onOpenMap: () => this.openIslandMap(),
+            onSelectIsland: (lvl) => this.selectIsland(lvl),
+            onUnlockIsland: (lvl) => this.unlockIsland(lvl)
+        });
+
+        this.loadLevel(this.currentLevelIndex);
         this.animate();
+    }
+
+    loadGameState() {
+        const defaultState = {
+            coins: 0,
+            sparks: 0,
+            unlockedIslands: [1],
+            islandPrices: { 1: 0, 2: 50, 3: 120 },
+            selectedIsland: 1
+        };
+
+        try {
+            const saved = localStorage.getItem('sugarsprint_save');
+            if (saved) {
+                this.state = Object.assign(defaultState, JSON.parse(saved));
+            } else {
+                this.state = defaultState;
+            }
+        } catch (e) {
+            this.state = defaultState;
+        }
+    }
+
+    saveGameState() {
+        try {
+            this.state.coins = this.player.coins;
+            localStorage.setItem('sugarsprint_save', JSON.stringify(this.state));
+        } catch (e) {
+            console.warn('Could not save game state to localStorage', e);
+        }
+    }
+
+    openIslandMap() {
+        this.hud.showIslandMap(this.state, (islandNum) => {
+            if (this.state.unlockedIslands.includes(islandNum)) {
+                this.selectIsland(islandNum);
+            } else {
+                this.unlockIsland(islandNum);
+            }
+        });
+    }
+
+    unlockIsland(islandNum) {
+        const cost = this.state.islandPrices[islandNum] || 0;
+        if (this.player.coins >= cost) {
+            this.player.coins -= cost;
+            this.state.unlockedIslands.push(islandNum);
+            this.saveGameState();
+            this.soundManager.play('victory');
+            this.hud.updateStats(this.player.coins, this.player.sparks);
+            this.openIslandMap(); // refresh map view
+        } else {
+            this.soundManager.play('damage');
+            alert(`¡Te faltan ${cost - this.player.coins} Bolitas de Anís para desbloquear esta Isla!`);
+        }
+    }
+
+    selectIsland(islandNum) {
+        if (!this.state.unlockedIslands.includes(islandNum)) return;
+        this.state.selectedIsland = islandNum;
+        this.saveGameState();
+        this.hud.hideIslandMap();
+        this.loadLevel(islandNum);
     }
 
     loadLevel(levelNum) {
@@ -88,6 +160,7 @@ class SugarSprintGame {
                     this.scene.remove(coin);
                     this.currentLevel.coins.splice(i, 1);
                     this.player.coins += 10;
+                    this.saveGameState();
                     this.soundManager.play('coin');
                     this.particles.createConfetti(coin.position, 10);
                     this.hud.updateStats(this.player.coins, this.player.sparks);
@@ -131,23 +204,39 @@ class SugarSprintGame {
 
     onLevelComplete() {
         this.soundManager.play('victory');
+        // Bonus reward for clearing the island
+        this.player.coins += 30;
+        this.saveGameState();
+        this.hud.updateStats(this.player.coins, this.player.sparks);
+
+        const nextLvl = this.currentLevelIndex + 1;
+        const isNextUnlocked = this.state.unlockedIslands.includes(nextLvl);
+
         if (this.currentLevelIndex < 3) {
-            this.hud.showOverlay(
-                "¡ESQUIRLA RECUPERADA!",
-                `Has Purificado el Mundo ${this.currentLevelIndex}. ¡El equilibrio dulce se restaura!`,
-                "SIGUIENTE NIVEL",
-                () => this.loadLevel(this.currentLevelIndex + 1)
-            );
+            if (isNextUnlocked) {
+                this.hud.showOverlay(
+                    "¡ESQUIRLA RECUPERADA!",
+                    `Has Purificado la Isla ${this.currentLevelIndex}. ¡Has ganado +30 Bolitas de Anís!`,
+                    "SIGUIENTE ISLA",
+                    () => this.loadLevel(nextLvl)
+                );
+            } else {
+                const nextCost = this.state.islandPrices[nextLvl];
+                this.hud.showOverlay(
+                    "¡ESQUIRLA RECUPERADA!",
+                    `Has Purificado la Isla ${this.currentLevelIndex} y ganado +30 monedas. La siguiente Isla cuesta ${nextCost} Bolitas de Anís.`,
+                    "VER MAPA DE ISLAS",
+                    () => this.openIslandMap()
+                );
+            }
         } else {
             this.hud.showOverlay(
                 "¡DULCELANDIA SALVADA!",
-                `¡Has derrotado a Lord Salitre y reconstruido el Corazón de Azúcar Glaseado! Puntuación Final: ${this.player.coins} Puntos.`,
-                "JUGAR DE NUEVO",
+                `¡Has derrotado a Lord Salitre y reconstruido el Corazón de Azúcar Glaseado! Monedas acumuladas: ${this.player.coins}.`,
+                "MAPA DE ISLAS",
                 () => {
-                    this.player.coins = 0;
-                    this.player.sparks = 0;
                     this.player.health = 3;
-                    this.loadLevel(1);
+                    this.openIslandMap();
                 }
             );
         }
