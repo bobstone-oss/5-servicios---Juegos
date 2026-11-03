@@ -14,6 +14,89 @@ export class HUDManager {
         this.btnOpenMap = document.getElementById('btn-open-map');
         this.btnCloseMap = document.getElementById('btn-close-map');
         this.mapWalletCoinsEl = document.getElementById('map-wallet-coins');
+
+        // Settings modal elements
+        this.settingsModalEl = document.getElementById('settings-modal');
+        this.btnOpenSettings = document.getElementById('btn-open-settings');
+        this.btnCloseSettings = document.getElementById('btn-close-settings');
+        this.volumeSlider = document.getElementById('volume-slider');
+        this.volumeDisplay = document.getElementById('volume-display');
+        this.muteCheckbox = document.getElementById('mute-checkbox');
+        this.btnTestSound = document.getElementById('btn-test-sound');
+
+        // Story modal elements
+        this.storyModalEl = document.getElementById('story-modal');
+        this.storyChapterTag = document.getElementById('story-chapter-tag');
+        this.storyTitle = document.getElementById('story-title');
+        this.storyText = document.getElementById('story-text');
+        this.btnStartStory = document.getElementById('btn-start-story');
+    }
+
+    setupSettingsControls(soundManager) {
+        if (!soundManager) return;
+
+        if (this.volumeSlider) {
+            this.volumeSlider.value = Math.round(soundManager.volume * 100);
+            if (this.volumeDisplay) this.volumeDisplay.textContent = `${this.volumeSlider.value}%`;
+
+            this.volumeSlider.oninput = (e) => {
+                const valInt = e.target.value;
+                const val = parseInt(valInt) / 100;
+                soundManager.setVolume(val);
+                if (this.volumeDisplay) this.volumeDisplay.textContent = `${valInt}%`;
+            };
+            this.volumeSlider.onchange = this.volumeSlider.oninput;
+        }
+
+        if (this.muteCheckbox) {
+            this.muteCheckbox.checked = soundManager.isMuted;
+            this.muteCheckbox.onchange = (e) => {
+                soundManager.isMuted = e.target.checked;
+                soundManager.setVolume(soundManager.volume);
+            };
+        }
+
+        if (this.btnTestSound) {
+            this.btnTestSound.onclick = () => {
+                soundManager.play('coin');
+            };
+        }
+
+        if (this.btnOpenSettings) {
+            this.btnOpenSettings.onclick = () => this.showSettings();
+        }
+
+        if (this.btnCloseSettings) {
+            this.btnCloseSettings.onclick = () => this.hideSettings();
+        }
+    }
+
+    showSettings() {
+        if (this.settingsModalEl) this.settingsModalEl.classList.remove('hidden');
+    }
+
+    hideSettings() {
+        if (this.settingsModalEl) this.settingsModalEl.classList.add('hidden');
+    }
+
+    showStoryCutscene(chapterTag, title, text, onStart) {
+        if (!this.storyModalEl) return;
+        if (this.storyChapterTag) this.storyChapterTag.textContent = chapterTag;
+        if (this.storyTitle) this.storyTitle.textContent = title;
+        if (this.storyText) this.storyText.textContent = text;
+
+        if (this.btnStartStory) {
+            this.btnStartStory.onclick = () => {
+                this.hideStoryCutscene();
+                if (onStart) onStart();
+            };
+        }
+
+        this.storyModalEl.classList.remove('hidden');
+    }
+
+    hideStoryCutscene() {
+        if (this.storyModalEl) this.storyModalEl.classList.add('hidden');
     }
 
     setupMapControls(callbacks = {}) {

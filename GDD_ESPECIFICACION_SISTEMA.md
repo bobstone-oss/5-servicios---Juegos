@@ -108,12 +108,30 @@ El jugador encarna a **Pipo**, el osito de gominola rojo más elástico y optimi
 
 ### **4. Mecánicas de Juego, Economía e Interacción**
 
-#### **4.1 Meta-Progresión y Sistema de Desbloqueo de Islas**
-El juego incorpora una economía circular de persistencia (`localStorage: sugarsprint_save`) donde las monedas recolectadas permiten comprar el acceso a nuevas islas flotantes en el **Mapa de Dulcelandia**:
-* **Isla 1 (Bosque de Algodón)**: Desbloqueada por defecto ($0 \text{ monedas}$).
-* **Isla 2 (Río de Gominola)**: Requiere $50 \text{ Bolitas de Anís}$ para retirar el candado de caramelo amargo.
-* **Isla 3 (Cumbre de Chocolate Negro)**: Requiere $120 \text{ Bolitas de Anís}$ para abrir el portal volcánico a la guarida de Lord Salitre.
-* **Recompensa por Victoria**: Superar cualquier nivel otorga un bonus estelar de $+30 \text{ Bolitas de Anís}$ directas a la cartera del jugador, incentivando la rejugabilidad para desbloquear las etapas superiores.
+#### **4.1 Meta-Progresión, Desbloqueo de Islas y Mini-Historias Cinemáticas**
+El juego incorpora una progresión dual tanto por superación natural como por economía circular con persistencia en `localStorage: sugarsprint_save`:
+* **Desbloqueo Progresivo Automático**: Al completar con éxito una isla, la siguiente se desbloquea de manera automática e inmediata, otorgando $+30 \text{ Bolitas de Anís}$ de bonificación.
+* **Desbloqueo por Moneda Alternativo**: En el Mapa de Dulcelandia, los jugadores pueden adelantar el desbloqueo o revisitar fases mediante sus ganancias acumuladas:
+  * *Isla 1 (Bosque de Algodón)*: Desbloqueada por defecto ($0 \text{ monedas}$).
+  * *Isla 2 (Río de Gominola)*: Desbloqueable por $50 \text{ Bolitas de Anís}$.
+  * *Isla 3 (Cumbre de Chocolate)*: Desbloqueable por $120 \text{ Bolitas de Anís}$.
+
+#### **4.2 Estructura Narrativa por Isla (Acción, Aventura, Drama)**
+Cada isla presenta una breve cinemática ilustrada con el avatar del héroe calvo y barbudo antes de iniciar la partida:
+1. **Isla 1 (Acción & Coraje - ¡El Bosque en Peligro!)**:
+   * *Conflicto*: La niebla amarga corroe los árboles de algodón dulce y apaga la elasticidad de los masmelos.
+   * *Acción*: Pipo ajusta su capa dorada con coraje: *"¡No permitiré que la amargura marchite nuestro hogar!"*.
+2. **Isla 2 (Aventura & Misterio - Los Rápidos de Ámbar Traicioneros)**:
+   * *Conflicto*: El río sagrado de jarabe se cuaja en estalactitas de salmuera punzantes que amenazan con deshidratar a los seres de gominola.
+   * *Aventura*: Pipo navega corrientes viscosas y sortea trampas prismáticas en pos de la segunda esquirla: *"¡Aguantad, amigos, el almíbar volverá a fluir!"*.
+3. **Isla 3 (Drama & Clímax Final - La Confrontación contra Lord Salitre)**:
+   * *Conflicto*: En la cima del volcán de cacao fundido, Lord Salitre alza su cetro para desatar la desecación total del reino.
+   * *Drama*: Diálogo tenso entre la opacidad estéril y el resplandor azucarado. Pipo responde con heroísmo: *"¡Mientras quede un grano de azúcar, la esperanza jamás será amarga!"*.
+
+#### **4.3 Panel de Ajustes y Control de Volumen**
+* Control de ganancia maestro en Web Audio API (`GainNode`) con slider de volumen porcentual (0% a 100%).
+* Opción de silencio total (Mute toggle) y botón de prueba sonora instantánea.
+* Persistencia automática de las preferencias sonoras en `localStorage: sugarsprint_volume`.
 
 #### **4.2 Coleccionables**
 * **Bolitas de Anís (Moneda Común)**:

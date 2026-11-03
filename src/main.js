@@ -32,6 +32,7 @@ class SugarSprintGame {
         this.currentLevel = null;
         this.clock = new THREE.Clock();
 
+        this.hud.setupSettingsControls(this.soundManager);
         this.hud.setupMapControls({
             onOpenMap: () => this.openIslandMap(),
             onSelectIsland: (lvl) => this.selectIsland(lvl),
@@ -117,18 +118,33 @@ class SugarSprintGame {
         switch (levelNum) {
             case 1:
                 this.currentLevel = new Level1CottonCandyForest(this.scene);
-                this.hud.setLevelTitle("MUNDO 1: BOSQUE DE ALGODÓN DE AZÚCAR");
+                this.hud.setLevelTitle("ISLA 1: BOSQUE DE ALGODÓN");
                 this.scene.background.setHex(0xffdae9);
+                this.hud.showStoryCutscene(
+                    "ISLA 1: ACCIÓN & CORAJE",
+                    "¡EL BOSQUE EN PELIGRO!",
+                    "Una niebla amarga desciende sobre las copas de algodón. Los masmelos pierden su rebote y el cielo llora gotas agrias. Pipo empuña su capa dorada con determinación: '¡No permitiré que la amargura apague la dulzura de nuestro hogar!'"
+                );
                 break;
             case 2:
                 this.currentLevel = new Level2GummyRiver(this.scene);
-                this.hud.setLevelTitle("MUNDO 2: RÍO DE GOMINOLA Y ROCAS CARAMELO");
+                this.hud.setLevelTitle("ISLA 2: RÍO DE GOMINOLA");
                 this.scene.background.setHex(0xe0f7fa);
+                this.hud.showStoryCutscene(
+                    "ISLA 2: AVENTURA Y MISTERIO",
+                    "LOS RÁPIDOS DE ÁMBAR TRAICIONEROS",
+                    "El gran río de jarabe se espesa con estalactitas de salmuera punzantes. Las plataformas de gelatina se hunden bajo la sal. Pipo divisa la segunda esquirla resplandeciente: '¡Aguantad, amigos de gominola, el almíbar volverá a fluir!'"
+                );
                 break;
             case 3:
                 this.currentLevel = new Level3DarkChocolatePeak(this.scene);
-                this.hud.setLevelTitle("MUNDO 3: CUMBRE DE CHOCOLATE NEGRO");
+                this.hud.setLevelTitle("ISLA 3: CUMBRE DE CHOCOLATE");
                 this.scene.background.setHex(0x4a2e2b);
+                this.hud.showStoryCutscene(
+                    "ISLA 3: DRAMA & CLÍMAX FINAL",
+                    "LA CONFRONTACIÓN CONTRA LORD SALITRE",
+                    "En la cima ardiente del volcán de chocolate, Lord Salitre alza su báculo de pretzel seco: '¡Dulcelandia perecerá en la sequía más amarga!'. Pipo ajusta su barba de cacao y responde: '¡Mientras quede un grano de azúcar, la esperanza jamás será amarga!'."
+                );
                 break;
         }
 

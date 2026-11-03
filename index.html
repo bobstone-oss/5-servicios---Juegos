@@ -41,6 +41,53 @@
                     <span id="sparks-count">0 / 3</span>
                 </div>
                 <button id="btn-open-map" class="map-icon-btn" title="Mapa de Islas">🗺️ Islas</button>
+                <button id="btn-open-settings" class="settings-icon-btn" title="Ajustes de Sonido">⚙️</button>
+            </div>
+        </div>
+
+        <!-- Settings Modal (Ajustes de Sonido / Volumen) -->
+        <div id="settings-modal" class="hidden">
+            <div class="settings-card">
+                <div class="settings-header">
+                    <h2>⚙️ AJUSTES DE DULCELANDIA</h2>
+                </div>
+
+                <div class="settings-body">
+                    <div class="setting-row">
+                        <label for="volume-slider"><strong>Volumen General:</strong></label>
+                        <div class="volume-control-wrap">
+                            <span id="volume-icon">🔊</span>
+                            <input type="range" id="volume-slider" min="0" max="100" value="70">
+                            <span id="volume-display">70%</span>
+                        </div>
+                    </div>
+
+                    <div class="setting-row">
+                        <label for="mute-checkbox"><strong>Silenciar Efectos (Mute):</strong></label>
+                        <input type="checkbox" id="mute-checkbox">
+                    </div>
+
+                    <div class="settings-test-audio">
+                        <button id="btn-test-sound" class="test-sfx-btn">Probar Sonido 🎵</button>
+                    </div>
+                </div>
+
+                <div class="settings-footer">
+                    <button id="btn-close-settings" class="candy-btn close-map-btn">GUARDAR Y SALIR</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mini-Story Cutscene Dialog Modal -->
+        <div id="story-modal" class="hidden">
+            <div class="story-card">
+                <div class="story-avatar">🧔🍓</div>
+                <div class="story-content">
+                    <span id="story-chapter-tag" class="story-tag">CAPÍTULO 1</span>
+                    <h2 id="story-title">EL MARMOL AZUCARADO</h2>
+                    <p id="story-text">La niebla amarga corroe los árboles de algodón. ¡Pipo debe actuar antes de que todo se desmorone!</p>
+                    <button id="btn-start-story" class="candy-btn story-btn">¡AL RESCATE! ⚔️</button>
+                </div>
             </div>
         </div>
 

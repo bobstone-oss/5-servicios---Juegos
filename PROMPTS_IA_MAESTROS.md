@@ -58,6 +58,12 @@ PROMPT MIDJOURNEY / DALL-E 3:
 3D isometric overworld map of floating candy islands interconnected by rainbow syrup bridges in a pastel cloud sky. Island 1 with pink cotton candy trees unlocked, Island 2 with lime jelly rivers locked behind a golden candy padlock with a 50 coins tag, Island 3 dark chocolate volcano locked with 120 coins tag. Mobile casual puzzle game map screen, juicy game feel, bright saturated candy palette, octane render 8k --ar 16:9 --v 6.0
 ```
 
+#### **2.7 Diálogo Cinemático de Mini-Historia y Ventana de Ajustes**
+```text
+PROMPT MIDJOURNEY / DALL-E 3:
+Casual mobile game UI dialog popup for narrative story cutscene and sound settings. Stylized comic vignette with bald gummy adventurer with chocolate beard expressing brave heroic emotion. Polished candy buttons, frosted glass backdrop with sugar sparkle particles, sound volume slider resembling a rainbow candy stick with a gumdrop handle, warm candy lighting --ar 16:9 --v 6.0
+```
+
 ---
 
 ### **3. Prompts para Generación de Audio y Música (Stable Audio / Suno / Udio)**
