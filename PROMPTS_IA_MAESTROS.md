@@ -22,46 +22,40 @@ Cuando respondas o generes especificaciones para este proyecto, mantén una term
 
 ### **2. Prompts de Generación de Arte 3D y Concept Art (Midjourney v6 / DALL-E 3)**
 
-#### **2.1 Protagonista: Pipo, el Aventurero de Gominola Calvo con Barba**
+#### **2.1 Menú Principal y Pantalla de Título Candy Crush**
 ```text
 PROMPT MIDJOURNEY / DALL-E 3:
-3D isometric character render of Pipo, a brave stylized bald adventurer hero made of hyper-glossy translucent strawberry red jelly gummy material, completely smooth and shiny bald head reflecting studio highlights, lush sculpted dark chocolate and licorice beard with a curly confectionery moustache, glossy candy eyes, wearing a tiny cape made of shiny metallic gold candy wrapper and a small waffle-textured backpack. Jumping across floating candy islands with clouds, Candy Crush Saga and Super Mario 3D World mobile game art style, studio lighting, soft pastel shadows, octane render, 8k resolution, ultra-detailed candy texture, vibrant chromatic color palette --ar 1:1 --v 6.0
+Mobile casual platformer game title screen and main menu mockup for "SUGAR SPRINT: La Búsqueda del Cristal de Caramelo". Huge glossy 3D letters made of strawberry glazed candy with golden sugar sparkles and rainbow syrup dripping. In the center, three juicy rounded candy buttons labeled "JUGAR", "TIENDA", "OPCIONES" with thick cartoonish borders and 3D squash depth. In the pastel background, floating pink cotton candy clouds and shiny lollipop hills, Candy Crush Saga and Super Mario 3D World art style, vibrant chromatic palette, volumetric lighting, 8k render --ar 16:9 --v 6.0
 ```
 
-#### **2.2 Villano: Lord Salitre**
+#### **2.2 Protagonista: Pipo, el Héroe de Gominola con Barba de Chocolate**
+```text
+PROMPT MIDJOURNEY / DALL-E 3:
+3D isometric character render of Pipo, a brave stylized adventurer hero made of hyper-glossy translucent strawberry red jelly gummy material, completely smooth and shiny head reflecting studio highlights, lush sculpted dark chocolate and licorice beard with a curly confectionery moustache, glossy candy eyes, wearing a tiny cape made of shiny metallic gold candy wrapper and a small waffle-textured backpack. Jumping across floating candy islands with clouds, Candy Crush Saga and Super Mario 3D World mobile game art style, studio lighting, soft pastel shadows, octane render, 8k resolution, ultra-detailed candy texture, vibrant chromatic color palette --ar 1:1 --v 6.0
+```
+
+#### **2.3 Villano: Lord Salitre**
 ```text
 PROMPT MIDJOURNEY / DALL-E 3:
 3D isometric villain render of Lord Salt, a dry angular sea salt crystal warrior, rough matte grey and white salt texture, wearing dark burnt sugar coal armor, holding a dry pretzel staff. Strong aesthetic contrast with glossy juicy candy world, sharp geometric salt crystals, Candy Crush Saga antagonist style, octane render, clean edges, studio lighting --ar 1:1 --v 6.0
 ```
 
-#### **2.3 Mundo 1: Bosque de Algodón de Azúcar**
+#### **2.4 Cinemática de Epílogo y Teaser de la Expansión (El Valle de los Masmelos Olvidados - DLC 1.5)**
 ```text
 PROMPT MIDJOURNEY / DALL-E 3:
-Isometric 3D game level concept art of Cotton Candy Forest in a candy world. Fluffy pink bubblegum cotton candy tree canopies functioning as trampolines, twisted licorice bridges, lollipop flowers with glossy candy glaze, morning dew drops made of clear syrup, soft pastel blue and mint green background, volumetric sugary dust particles, warm bright lighting, Pixar level style --ar 16:9 --v 6.0
+Isometric concept art for a fantasy candy expansion level: "The Valley of the Forgotten Marshmallows". High-altitude sky islands made of giant toasted marshmallow mounds floating over meringue fluff, elastic bubblegum ziplines connecting fluffy cliffs, effervescent soda crystal geysers shooting colorful sparkling bubbles into a lavender sky, cute, whimsical and adventurous, studio lighting, octane render 8k --ar 16:9 --v 6.0
 ```
 
-#### **2.4 Mundo 2: Río de Gominola y Rocas Caramelo**
+#### **2.5 Cinemática de Cliffhanger y Teaser de la Secuela (Sugar Sprint 2: El Despertar del Océano Amargo)**
 ```text
 PROMPT MIDJOURNEY / DALL-E 3:
-Isometric 3D game level of Gummy River & Candy Rocks. Translucent lime-green syrup rivers reflecting sunlight like jelly prisms, amber candied rock platforms, sharp hanging stalactites of brittle crystallized sugar, sticky orange jelly traps, juicy bright aesthetic, vivid color saturation, game design level view --ar 16:9 --v 6.0
+Cinematic concept art for game sequel cliffhanger: "Sugar Sprint 2: The Bitter Ocean Awakening". A gigantic dark abyss opening in a radiant pink syrup sea, ominous white salt brine tides rising against candy shorelines. In the distant shadows, a titanic colossal salt sea monster with a crown of jagged crystal salt and dark licorice tentacles rises from the bitter brine depth. In the foreground, Pipo on a tiny waffle sailboat gripping his golden wrapper cape looking bravely into the storm, dramatic contrast between juicy candy and dark saline doom, 8k octane render, cinematic lighting --ar 16:9 --v 6.0
 ```
 
-#### **2.5 Mundo 3: Cumbre de Chocolate Negro y Cacao**
+#### **2.6 Tienda de Skins de Pipo**
 ```text
 PROMPT MIDJOURNEY / DALL-E 3:
-Isometric 3D game level climax stage of Dark Chocolate Peak. Hot molten chocolate waterfalls, rich truffle brown terrain with golden leaf accents, crispy waffle floor tiles cracking over crimson syrup, cinnamon steam geysers, dramatic epic candy boss arena, hyper-detailed food texture, octane render --ar 16:9 --v 6.0
-```
-
-#### **2.6 Mapa de Dulcelandia / Selector de Islas con Desbloqueo de Monedas**
-```text
-PROMPT MIDJOURNEY / DALL-E 3:
-3D isometric overworld map of floating candy islands interconnected by rainbow syrup bridges in a pastel cloud sky. Island 1 with pink cotton candy trees unlocked, Island 2 with lime jelly rivers locked behind a golden candy padlock with a 50 coins tag, Island 3 dark chocolate volcano locked with 120 coins tag. Mobile casual puzzle game map screen, juicy game feel, bright saturated candy palette, octane render 8k --ar 16:9 --v 6.0
-```
-
-#### **2.7 Diálogo Cinemático de Mini-Historia y Ventana de Ajustes**
-```text
-PROMPT MIDJOURNEY / DALL-E 3:
-Casual mobile game UI dialog popup for narrative story cutscene and sound settings. Stylized comic vignette with bald gummy adventurer with chocolate beard expressing brave heroic emotion. Polished candy buttons, frosted glass backdrop with sugar sparkle particles, sound volume slider resembling a rainbow candy stick with a gumdrop handle, warm candy lighting --ar 16:9 --v 6.0
+Casual mobile game wardrobe skin shop screen for gummy bear adventurer. Four podiums made of frosted macarons displaying cosmetic variants: Strawberry Red (default), Fresh Spearmint Green, Indigo Blueberry Gum, and Glazed Honey Gold with sugar glitter. Golden anise candy coin counter in the top bar, glossy user interface, juicy candy buttons, clean isometric composition, octane render --ar 16:9 --v 6.0
 ```
 
 ---
@@ -80,10 +74,11 @@ PROMPT STABLE AUDIO / SUNO:
 Epic casual boss battle music in a chocolate volcano, intense orchestral marimba, brass hits, fast bouncy tempo, playful yet dramatic orchestral percussion, candy kingdom showdown, 140 BPM, high energy.
 ```
 
-#### **3.3 Efectos de Sonido (SFX)**
-* **Salto de Gominola**: `Bouncy pop sound, stretchy rubber jelly bounce, pitch rising fast, clean synth sound effect, UI sound.`
-* **Rebote de Masmelo**: `Deep squishy boing impact, marshmallow compression and release, wet juicy resonance.`
-* **Recolectar Bolita de Anís**: `Sparkling crystal chime bell, high pitch coin pickup sound, bright candy twinkle.`
+#### **3.3 Fanfarria de Victoria y Fanfarria Ominosa de Cliffhanger (Epílogo)**
+```text
+PROMPT STABLE AUDIO / SUNO:
+Grand triumphant orchestral candy fanfare transitioning into sudden ominous deep sub-bass tremor, mysterious saline wind ambiance, echoing dramatic chord revealing a sequel teaser, cinematic trailer audio cue, 30 seconds.
+```
 
 ---
 

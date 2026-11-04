@@ -27,17 +27,13 @@ class SugarSprintGame {
 
         this.player = new PipoPlayer(this.scene, this.soundManager, this.particles);
         this.player.coins = this.state.coins;
+        this.applySkin(this.state.currentSkin || 'fresa');
 
         this.currentLevelIndex = this.state.selectedIsland || 1;
         this.currentLevel = null;
         this.clock = new THREE.Clock();
 
-        this.hud.setupSettingsControls(this.soundManager);
-        this.hud.setupMapControls({
-            onOpenMap: () => this.openIslandMap(),
-            onSelectIsland: (lvl) => this.selectIsland(lvl),
-            onUnlockIsland: (lvl) => this.unlockIsland(lvl)
-        });
+        this.setupUIHandlers();
 
         this.loadLevel(this.currentLevelIndex);
         this.animate();
@@ -49,7 +45,9 @@ class SugarSprintGame {
             sparks: 0,
             unlockedIslands: [1],
             islandPrices: { 1: 0, 2: 50, 3: 120 },
-            selectedIsland: 1
+            selectedIsland: 1,
+            ownedSkins: ['fresa'],
+            currentSkin: 'fresa'
         };
 
         try {
@@ -70,6 +68,81 @@ class SugarSprintGame {
             localStorage.setItem('sugarsprint_save', JSON.stringify(this.state));
         } catch (e) {
             console.warn('Could not save game state to localStorage', e);
+        }
+    }
+
+    setupUIHandlers() {
+        // Main Menu
+        this.hud.setupMainMenu({
+            onPlay: () => {
+                this.openIslandMap();
+            },
+            onShop: () => {
+                this.openShop();
+            }
+        });
+
+        // Shop Controls
+        this.hud.setupShopControls({
+            onOpenShop: () => this.openShop()
+        });
+
+        // Settings Controls
+        this.hud.setupSettingsControls(this.soundManager);
+
+        // Island Map Controls
+        this.hud.setupMapControls({
+            onOpenMap: () => this.openIslandMap(),
+            onSelectIsland: (lvl) => this.selectIsland(lvl),
+            onUnlockIsland: (lvl) => this.unlockIsland(lvl)
+        });
+    }
+
+    openShop() {
+        this.hud.showShop(
+            this.state,
+            (skinId) => this.equipSkin(skinId),
+            (skinId, cost) => this.buySkin(skinId, cost)
+        );
+    }
+
+    buySkin(skinId, cost) {
+        if (this.player.coins >= cost) {
+            this.player.coins -= cost;
+            if (!this.state.ownedSkins) this.state.ownedSkins = ['fresa'];
+            this.state.ownedSkins.push(skinId);
+            this.state.currentSkin = skinId;
+            this.applySkin(skinId);
+            this.saveGameState();
+            this.soundManager.play('victory');
+            this.hud.updateStats(this.player.coins, this.player.sparks);
+            this.openShop(); // refresh shop UI
+        } else {
+            this.soundManager.play('damage');
+            alert(`¡Te faltan ${cost - this.player.coins} Bolitas de Anís para adquirir este aspecto dulce!`);
+        }
+    }
+
+    equipSkin(skinId) {
+        this.state.currentSkin = skinId;
+        this.applySkin(skinId);
+        this.saveGameState();
+        this.soundManager.play('spark');
+        this.openShop();
+    }
+
+    applySkin(skinId) {
+        if (!this.player || !this.player.bodyMesh) return;
+        const skinColors = {
+            fresa: { color: 0xff1744, roughness: 0.15 },
+            menta: { color: 0x00e676, roughness: 0.2 },
+            mora: { color: 0x3d5afe, roughness: 0.15 },
+            dorado: { color: 0xffd700, roughness: 0.05 }
+        };
+        const config = skinColors[skinId] || skinColors.fresa;
+        if (this.player.bodyMesh.material) {
+            this.player.bodyMesh.material.color.setHex(config.color);
+            this.player.bodyMesh.material.roughness = config.roughness;
         }
     }
 
@@ -103,6 +176,7 @@ class SugarSprintGame {
         this.state.selectedIsland = islandNum;
         this.saveGameState();
         this.hud.hideIslandMap();
+        this.hud.hideMainMenu();
         this.loadLevel(islandNum);
     }
 
@@ -246,13 +320,17 @@ class SugarSprintGame {
                 );
             }
         } else {
-            this.hud.showOverlay(
-                "¡DULCELANDIA SALVADA!",
-                `¡Has derrotado a Lord Salitre y reconstruido el Corazón de Azúcar Glaseado! Monedas acumuladas: ${this.player.coins}.`,
-                "MAPA DE ISLAS",
+            // Climax Victory Epilogue with Teasers for DLC & Sequel
+            this.hud.showVictoryEpilogue(
+                // Replay callback
                 () => {
                     this.player.health = 3;
-                    this.openIslandMap();
+                    this.loadLevel(3);
+                },
+                // Return to Main Menu callback
+                () => {
+                    this.player.health = 3;
+                    this.hud.showMainMenu();
                 }
             );
         }
@@ -273,5 +351,5 @@ class SugarSprintGame {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-    new SugarSprintGame();
+    window.game = new SugarSprintGame();
 });

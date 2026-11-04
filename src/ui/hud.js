@@ -9,6 +9,19 @@ export class HUDManager {
         this.modalTextEl = document.getElementById('modal-text');
         this.modalBtnEl = document.getElementById('modal-btn');
 
+        // Main Menu elements
+        this.mainMenuEl = document.getElementById('main-menu');
+        this.btnMenuPlay = document.getElementById('btn-menu-play');
+        this.btnMenuShop = document.getElementById('btn-menu-shop');
+        this.btnMenuOptions = document.getElementById('btn-menu-options');
+        this.btnHudMenu = document.getElementById('btn-hud-menu');
+
+        // Shop modal elements
+        this.shopModalEl = document.getElementById('shop-modal');
+        this.btnOpenShop = document.getElementById('btn-open-shop');
+        this.btnCloseShop = document.getElementById('btn-close-shop');
+        this.shopWalletCoinsEl = document.getElementById('shop-wallet-coins');
+
         // Island map modal elements
         this.mapModalEl = document.getElementById('island-map-modal');
         this.btnOpenMap = document.getElementById('btn-open-map');
@@ -30,6 +43,120 @@ export class HUDManager {
         this.storyTitle = document.getElementById('story-title');
         this.storyText = document.getElementById('story-text');
         this.btnStartStory = document.getElementById('btn-start-story');
+
+        // Victory Epilogue elements
+        this.epilogueModalEl = document.getElementById('victory-epilogue');
+        this.btnEpilogueReplay = document.getElementById('btn-epilogue-replay');
+        this.btnEpilogueMenu = document.getElementById('btn-epilogue-menu');
+    }
+
+    setupMainMenu(callbacks = {}) {
+        if (this.btnMenuPlay) {
+            this.btnMenuPlay.onclick = () => {
+                this.hideMainMenu();
+                if (callbacks.onPlay) callbacks.onPlay();
+            };
+        }
+
+        if (this.btnMenuShop) {
+            this.btnMenuShop.onclick = () => {
+                if (callbacks.onShop) callbacks.onShop();
+            };
+        }
+
+        if (this.btnMenuOptions) {
+            this.btnMenuOptions.onclick = () => {
+                this.showSettings();
+            };
+        }
+
+        if (this.btnHudMenu) {
+            this.btnHudMenu.onclick = () => {
+                this.showMainMenu();
+            };
+        }
+    }
+
+    showMainMenu() {
+        if (this.mainMenuEl) {
+            this.mainMenuEl.classList.remove('hidden');
+        }
+    }
+
+    hideMainMenu() {
+        if (this.mainMenuEl) {
+            this.mainMenuEl.classList.add('hidden');
+        }
+    }
+
+    setupShopControls(callbacks = {}) {
+        if (this.btnOpenShop) {
+            this.btnOpenShop.onclick = () => {
+                if (callbacks.onOpenShop) callbacks.onOpenShop();
+            };
+        }
+
+        if (this.btnCloseShop) {
+            this.btnCloseShop.onclick = () => this.hideShop();
+        }
+
+        this.shopCallbacks = callbacks;
+    }
+
+    showShop(state, onEquipSkin, onBuySkin) {
+        if (!this.shopModalEl) return;
+        if (this.shopWalletCoinsEl) {
+            this.shopWalletCoinsEl.textContent = `${state.coins} 🍬`;
+        }
+
+        const skinItems = document.querySelectorAll('.skin-item');
+        skinItems.forEach(item => {
+            const skinId = item.getAttribute('data-skin-id');
+            const isOwned = (state.ownedSkins || ['fresa']).includes(skinId);
+            const isEquipped = state.currentSkin === skinId;
+
+            let actionContainer = item.querySelector('.skin-btn, .skin-status');
+            const priceEl = item.querySelector('.skin-price');
+
+            if (isEquipped) {
+                item.classList.add('active');
+                if (priceEl) priceEl.style.display = 'none';
+                if (actionContainer) {
+                    actionContainer.outerHTML = '<span class="skin-status equipped">EQUIPADO</span>';
+                }
+            } else if (isOwned) {
+                item.classList.remove('active');
+                if (priceEl) priceEl.style.display = 'none';
+                if (actionContainer) {
+                    actionContainer.outerHTML = `<button class="skin-btn equip-btn" data-skin="${skinId}">Equipar</button>`;
+                }
+            } else {
+                item.classList.remove('active');
+                if (priceEl) priceEl.style.display = 'block';
+            }
+        });
+
+        // Rebind equip and buy click listeners
+        this.shopModalEl.querySelectorAll('.equip-btn').forEach(btn => {
+            btn.onclick = () => {
+                const sId = btn.getAttribute('data-skin');
+                if (onEquipSkin) onEquipSkin(sId);
+            };
+        });
+
+        this.shopModalEl.querySelectorAll('.buy-btn').forEach(btn => {
+            btn.onclick = () => {
+                const sId = btn.getAttribute('data-skin');
+                const cost = parseInt(btn.getAttribute('data-cost'), 10);
+                if (onBuySkin) onBuySkin(sId, cost);
+            };
+        });
+
+        this.shopModalEl.classList.remove('hidden');
+    }
+
+    hideShop() {
+        if (this.shopModalEl) this.shopModalEl.classList.add('hidden');
     }
 
     setupSettingsControls(soundManager) {
@@ -117,7 +244,6 @@ export class HUDManager {
             this.mapWalletCoinsEl.textContent = `${state.coins} 🍬`;
         }
 
-        // Render each island slot state
         const islands = [
             { id: 1, name: "Isla 1: Bosque de Algodón", price: 0 },
             { id: 2, name: "Isla 2: Río de Gominola", price: state.islandPrices[2] },
@@ -159,6 +285,35 @@ export class HUDManager {
 
     hideIslandMap() {
         if (this.mapModalEl) this.mapModalEl.classList.add('hidden');
+    }
+
+    // ========================================================
+    // GRAND VICTORY EPILOGUE & SEQUEL TEASER CONTROLS
+    // ========================================================
+    showVictoryEpilogue(onReplay, onMainMenu) {
+        if (!this.epilogueModalEl) return;
+
+        if (this.btnEpilogueReplay) {
+            this.btnEpilogueReplay.onclick = () => {
+                this.hideVictoryEpilogue();
+                if (onReplay) onReplay();
+            };
+        }
+
+        if (this.btnEpilogueMenu) {
+            this.btnEpilogueMenu.onclick = () => {
+                this.hideVictoryEpilogue();
+                if (onMainMenu) onMainMenu();
+            };
+        }
+
+        this.epilogueModalEl.classList.remove('hidden');
+    }
+
+    hideVictoryEpilogue() {
+        if (this.epilogueModalEl) {
+            this.epilogueModalEl.classList.add('hidden');
+        }
     }
 
     setLevelTitle(title) {

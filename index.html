@@ -17,6 +17,28 @@
     <div id="game-container"></div>
 
     <div id="ui-container">
+        <!-- Main Menu Overlay -->
+        <div id="main-menu" class="main-menu-overlay">
+            <div class="main-menu-content">
+                <div class="brand-badge">✨ DULCELANDIA SAGA ✨</div>
+                <h1 class="main-title">
+                    <span class="title-top">SUGAR SPRINT</span>
+                    <span class="title-sub">La Búsqueda del Cristal de Caramelo</span>
+                </h1>
+                <p class="menu-tagline">¡Salta, estírate y salva al reino del sabor amargo!</p>
+
+                <div class="menu-actions">
+                    <button id="btn-menu-play" class="candy-btn menu-btn btn-play">🚀 JUGAR</button>
+                    <button id="btn-menu-shop" class="candy-btn menu-btn btn-shop">🛍️ TIENDA</button>
+                    <button id="btn-menu-options" class="candy-btn menu-btn btn-options">⚙️ OPCIONES</button>
+                </div>
+
+                <div class="menu-footer-info">
+                    <span>Versión 1.0.0 • Motor 3D Isométrico Candy Feel</span>
+                </div>
+            </div>
+        </div>
+
         <div id="hud">
             <div class="hud-card level-badge">
                 <span id="level-title">MUNDO 1: BOSQUE DE ALGODÓN DE AZÚCAR</span>
@@ -40,8 +62,65 @@
                     <span class="icon">✨</span>
                     <span id="sparks-count">0 / 3</span>
                 </div>
+                <button id="btn-hud-menu" class="map-icon-btn" title="Menú Principal">🏠 Menú</button>
+                <button id="btn-open-shop" class="map-icon-btn" title="Tienda de Skins">🛍️ Tienda</button>
                 <button id="btn-open-map" class="map-icon-btn" title="Mapa de Islas">🗺️ Islas</button>
                 <button id="btn-open-settings" class="settings-icon-btn" title="Ajustes de Sonido">⚙️</button>
+            </div>
+        </div>
+
+        <!-- Shop Modal (Tienda de Trajes y Skins de Pipo) -->
+        <div id="shop-modal" class="hidden">
+            <div class="shop-card">
+                <div class="shop-header">
+                    <h2>🛍️ TIENDA DULCE DE SKINS</h2>
+                    <p>¡Personaliza la gominola y el atuendo de Pipo!</p>
+                    <div class="shop-wallet">
+                        <span>Tu Saldo: </span>
+                        <strong id="shop-wallet-coins">0 🍬</strong>
+                    </div>
+                </div>
+
+                <div class="skins-grid">
+                    <!-- Skin 1: Fresa Original -->
+                    <div class="skin-item active" data-skin-id="fresa">
+                        <div class="skin-preview preview-fresa">🍓</div>
+                        <h3>Pipo Fresa Real</h3>
+                        <p>Aspecto original con brillo clásico de cereza fresca.</p>
+                        <span class="skin-status equipped">EQUIPADO</span>
+                    </div>
+
+                    <!-- Skin 2: Menta Fresca -->
+                    <div class="skin-item" data-skin-id="menta">
+                        <div class="skin-preview preview-menta">🌱</div>
+                        <h3>Pipo Menta Fresca</h3>
+                        <p>Gominola verde translúcida con aroma refrescante.</p>
+                        <div class="skin-price">40 🍬</div>
+                        <button class="skin-btn buy-btn" data-skin="menta" data-cost="40">Comprar</button>
+                    </div>
+
+                    <!-- Skin 3: Mora Azul -->
+                    <div class="skin-item" data-skin-id="mora">
+                        <div class="skin-preview preview-mora">🫐</div>
+                        <h3>Pipo Mora Azul</h3>
+                        <p>Caramelo masticable azul índigo con reflejos mágicos.</p>
+                        <div class="skin-price">75 🍬</div>
+                        <button class="skin-btn buy-btn" data-skin="mora" data-cost="75">Comprar</button>
+                    </div>
+
+                    <!-- Skin 4: Caramelo Dorado -->
+                    <div class="skin-item" data-skin-id="dorado">
+                        <div class="skin-preview preview-dorado">👑</div>
+                        <h3>Pipo Oro Glaseado</h3>
+                        <p>Bañado en sirope de miel pura y purpurina de azúcar.</p>
+                        <div class="skin-price">150 🍬</div>
+                        <button class="skin-btn buy-btn" data-skin="dorado" data-cost="150">Comprar</button>
+                    </div>
+                </div>
+
+                <div class="shop-footer">
+                    <button id="btn-close-shop" class="candy-btn close-map-btn">VOLVER AL JUEGO</button>
+                </div>
             </div>
         </div>
 
@@ -167,11 +246,67 @@
             <p><strong>Controles:</strong> <code>WASD</code> / <code>Joystick Táctil</code> : Mover | <code>Espacio</code> / <code>Botón Salto</code> : Saltar / Rebote Gelatina | <code>E</code> / <code>Botón Chicletazo</code> : Estirar</p>
         </div>
 
+        <!-- Standard Level Overlay -->
         <div id="overlay" class="hidden">
             <div class="modal">
                 <h1 id="modal-title">¡NIVEL COMPLETADO!</h1>
                 <p id="modal-text">Has recuperado la Esquirla de Caramelo.</p>
                 <button id="modal-btn" class="candy-btn">SIGUIENTE NIVEL</button>
+            </div>
+        </div>
+
+        <!-- Grand Victory Epilogue & Sequel Teaser Modal -->
+        <div id="victory-epilogue" class="hidden">
+            <div class="epilogue-backdrop"></div>
+            <div class="epilogue-card">
+                <div class="epilogue-crown">👑 ✨ 🍭</div>
+                <h1 class="epilogue-title">¡DULCELANDIA HA SIDO SALVADA!</h1>
+                <p class="epilogue-intro">
+                    Con las tres esquirlas unidas, el <strong>Corazón de Azúcar Glaseado</strong> vuelve a palpitar con dulzor cósmico. Los ríos de almíbar fluyen radiantes y los habitantes de gominola recuperan su júbilo elástico.
+                </p>
+
+                <!-- Cinematic Cliffhanger Section -->
+                <div class="cliffhanger-box">
+                    <div class="cliffhanger-badge">⚠️ ALERTA EN LAS PROFUNDIDADES ⚠️</div>
+                    <h3>UNA GRIETA EN EL FONDO DEL ALMÍBAR</h3>
+                    <p>
+                        Pero cuando Pipo celebraba la victoria junto a la Gran Fuente Dulce, un terremoto sacudió los cimientos del mundo. Desde la fisura abierta por Lord Salitre emergió un hedor a salmuera milenaria y una risa cavernosa resonó:
+                    </p>
+                    <blockquote class="cliffhanger-quote">
+                        «Salitre no era más que un grano de sal en nuestra marea... El Gran Océano Amargo consumirá cada átomo de vuestro azúcar.»
+                    </blockquote>
+                    <p class="cliffhanger-mystery">
+                        Una silueta colosal con corona de cristal salino y tentáculos de regaliz negro se vislumbró antes de desvanecerse en las sombras...
+                    </p>
+                </div>
+
+                <!-- Upcoming Content Teasers Grid -->
+                <div class="upcoming-content-grid">
+                    <!-- DLC Teaser -->
+                    <div class="upcoming-card dlc-card">
+                        <span class="teaser-tag dlc-tag">PRÓXIMA EXPANSIÓN (DLC 1.5)</span>
+                        <h4>☁️ EL VALLE DE LOS MASMELOS OLVIDADOS</h4>
+                        <p>Explora 5 nuevas islas aéreas flotantes sobre nubes de merengue, domina el rebote triple y descubre el secreto de los caramelos efervescentes ancestrales.</p>
+                        <div class="teaser-meta">
+                            <span>✨ 3 Nuevas Skins</span> • <span>🧩 15 Nuevas Chispas</span>
+                        </div>
+                    </div>
+
+                    <!-- Sequel Teaser -->
+                    <div class="upcoming-card sequel-card">
+                        <span class="teaser-tag sequel-tag">SECUELA CONFIRMADA</span>
+                        <h4>🌊 SUGAR SPRINT 2: EL DESPERTAR DEL OCÉANO AMARGO</h4>
+                        <p>Pipo zarpa hacia los confines inexplorados de Dulcelandia. Nuevas habilidades submarinas de sirope, batallas contra los Titanes de Salmuera y modo cooperativo en tiempo real.</p>
+                        <div class="teaser-meta">
+                            <span>🚀 Próximamente en todas las plataformas</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="epilogue-actions">
+                    <button id="btn-epilogue-replay" class="candy-btn replay-btn">🔄 REJUGAR DESAFÍO</button>
+                    <button id="btn-epilogue-menu" class="candy-btn main-menu-return-btn">🏠 VOLVER AL MENÚ PRINCIPAL</button>
+                </div>
             </div>
         </div>
     </div>

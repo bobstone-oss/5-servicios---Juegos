@@ -1,3 +1,4 @@
+/* CSS Stylesheet for Sugar Sprint */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -32,6 +33,146 @@ body, html {
     padding: 20px;
 }
 
+/* ========================================================
+   MAIN MENU OVERLAY (Candy Crush Aesthetic)
+   ======================================================== */
+.main-menu-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(255, 182, 193, 0.95) 0%, rgba(199, 21, 133, 0.95) 100%);
+    backdrop-filter: blur(12px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 200;
+    pointer-events: auto;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.main-menu-overlay.hidden {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    display: none !important;
+}
+
+.main-menu-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 650px;
+    width: 90%;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.85);
+    border: 6px solid #ffffff;
+    border-radius: 36px;
+    box-shadow: 0 25px 50px rgba(139, 0, 78, 0.4), inset 0 3px 12px #ffffff;
+    animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.brand-badge {
+    background: linear-gradient(90deg, #ffd700 0%, #ff8c00 100%);
+    color: #4a2500;
+    font-size: 0.9rem;
+    font-weight: 900;
+    padding: 6px 18px;
+    border-radius: 20px;
+    letter-spacing: 2px;
+    box-shadow: 0 4px 10px rgba(255, 140, 0, 0.4);
+    margin-bottom: 12px;
+}
+
+.main-title {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 8px;
+}
+
+.title-top {
+    font-size: 3.2rem;
+    font-weight: 900;
+    background: linear-gradient(180deg, #ff1493 0%, #c71585 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 4px 12px rgba(255, 20, 147, 0.3);
+    letter-spacing: 2px;
+    line-height: 1.1;
+}
+
+.title-sub {
+    font-size: 1.3rem;
+    color: #00bcd4;
+    font-weight: 800;
+    text-shadow: 1px 1px 0px #fff;
+    margin-top: 4px;
+}
+
+.menu-tagline {
+    font-size: 1.1rem;
+    color: #5c3a21;
+    margin-bottom: 28px;
+    font-weight: 600;
+}
+
+.menu-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+    max-width: 340px;
+    margin-bottom: 22px;
+}
+
+.menu-btn {
+    font-size: 1.35rem;
+    padding: 16px 24px;
+    width: 100%;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-play {
+    background: linear-gradient(180deg, #00e676 0%, #00b0ff 100%);
+    box-shadow: 0 6px 0px #0081cb, 0 10px 15px rgba(0,0,0,0.25);
+}
+
+.btn-play:hover {
+    box-shadow: 0 8px 0px #0081cb, 0 14px 20px rgba(0,0,0,0.3);
+}
+
+.btn-shop {
+    background: linear-gradient(180deg, #ff9100 0%, #ff3d00 100%);
+    box-shadow: 0 6px 0px #b22a00, 0 10px 15px rgba(0,0,0,0.25);
+}
+
+.btn-shop:hover {
+    box-shadow: 0 8px 0px #b22a00, 0 14px 20px rgba(0,0,0,0.3);
+}
+
+.btn-options {
+    background: linear-gradient(180deg, #ab47bc 0%, #7b1fa2 100%);
+    box-shadow: 0 6px 0px #4a148c, 0 10px 15px rgba(0,0,0,0.25);
+}
+
+.btn-options:hover {
+    box-shadow: 0 8px 0px #4a148c, 0 14px 20px rgba(0,0,0,0.3);
+}
+
+.menu-footer-info {
+    font-size: 0.85rem;
+    color: #8b5a6c;
+}
+
+/* ========================================================
+   HUD
+   ======================================================== */
 #hud {
     display: flex;
     justify-content: space-between;
@@ -118,7 +259,155 @@ body, html {
     transform: scale(0.92);
 }
 
-/* Settings Modal */
+/* ========================================================
+   SHOP MODAL
+   ======================================================== */
+#shop-modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(30, 10, 25, 0.8);
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 150;
+    pointer-events: auto;
+    transition: opacity 0.25s ease;
+}
+
+#shop-modal.hidden {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    display: none !important;
+}
+
+.shop-card {
+    background: linear-gradient(180deg, #fff5f8 0%, #ffeaf1 100%);
+    border: 5px solid #ff9100;
+    border-radius: 28px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    max-width: 680px;
+    width: 92%;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 24px;
+    text-align: center;
+    animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.shop-header h2 {
+    color: #e65100;
+    font-size: 1.8rem;
+    margin-bottom: 4px;
+}
+
+.shop-header p {
+    color: #5c3a21;
+    font-size: 0.95rem;
+}
+
+.shop-wallet {
+    margin-top: 8px;
+    background: rgba(255, 255, 255, 0.9);
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 20px;
+    border: 2px dashed #ff9100;
+    font-size: 1.1rem;
+    color: #e65100;
+}
+
+.skins-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 14px;
+    margin: 20px 0;
+}
+
+.skin-item {
+    background: #ffffff;
+    border: 3px solid #ffcc80;
+    border-radius: 20px;
+    padding: 14px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+    transition: transform 0.15s ease, border-color 0.15s ease;
+}
+
+.skin-item.active {
+    border-color: #00e676;
+    background: #f1f8e9;
+    box-shadow: 0 6px 14px rgba(0, 230, 118, 0.3);
+}
+
+.skin-preview {
+    font-size: 2.5rem;
+    margin-bottom: 6px;
+}
+
+.skin-item h3 {
+    font-size: 0.95rem;
+    color: #3e2723;
+    margin-bottom: 4px;
+}
+
+.skin-item p {
+    font-size: 0.75rem;
+    color: #6d4c41;
+    line-height: 1.2;
+    margin-bottom: 8px;
+    flex: 1;
+}
+
+.skin-status.equipped {
+    font-size: 0.8rem;
+    font-weight: 900;
+    color: #2e7d32;
+    background: #c8e6c9;
+    padding: 4px 12px;
+    border-radius: 12px;
+}
+
+.skin-price {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #e65100;
+    margin-bottom: 6px;
+}
+
+.skin-btn {
+    border: none;
+    border-radius: 15px;
+    padding: 6px 14px;
+    font-weight: 800;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: transform 0.1s ease;
+}
+
+.skin-btn.buy-btn {
+    background: linear-gradient(180deg, #ff9100 0%, #ff3d00 100%);
+    color: white;
+}
+
+.skin-btn.equip-btn {
+    background: linear-gradient(180deg, #00b0ff 0%, #0091ea 100%);
+    color: white;
+}
+
+.skin-btn:active {
+    transform: scale(0.92);
+}
+
+/* ========================================================
+   SETTINGS MODAL
+   ======================================================== */
 #settings-modal {
     position: absolute;
     top: 0;
@@ -130,15 +419,15 @@ body, html {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 110;
+    z-index: 160;
     pointer-events: auto;
     transition: opacity 0.25s ease;
 }
 
 #settings-modal.hidden {
-    opacity: 0;
-    pointer-events: none;
-    display: none;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    display: none !important;
 }
 
 .settings-card {
@@ -202,7 +491,9 @@ body, html {
     background: #b3e5fc;
 }
 
-/* Mini-Story Cutscene Dialog Modal */
+/* ========================================================
+   MINI-STORY DIALOG MODAL
+   ======================================================== */
 #story-modal {
     position: absolute;
     top: 0;
@@ -214,15 +505,15 @@ body, html {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 105;
+    z-index: 140;
     pointer-events: auto;
     transition: opacity 0.3s ease;
 }
 
 #story-modal.hidden {
-    opacity: 0;
-    pointer-events: none;
-    display: none;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    display: none !important;
 }
 
 .story-card {
@@ -283,7 +574,9 @@ body, html {
     padding: 12px 28px;
 }
 
-/* Island Map Modal Styles */
+/* ========================================================
+   ISLAND MAP MODAL
+   ======================================================== */
 #island-map-modal {
     position: absolute;
     top: 0;
@@ -295,15 +588,15 @@ body, html {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 100;
+    z-index: 130;
     pointer-events: auto;
     transition: opacity 0.25s ease;
 }
 
 #island-map-modal.hidden {
-    opacity: 0;
-    pointer-events: none;
-    display: none;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    display: none !important;
 }
 
 .island-map-card {
@@ -445,7 +738,9 @@ body, html {
     font-size: 1rem;
 }
 
-/* Mobile Touch Controls */
+/* ========================================================
+   MOBILE TOUCH CONTROLS
+   ======================================================== */
 #touch-controls {
     display: flex;
     justify-content: space-between;
@@ -581,8 +876,15 @@ body, html {
         font-size: 0.75rem;
         padding: 4px 8px;
     }
+
+    .title-top {
+        font-size: 2.3rem;
+    }
 }
 
+/* ========================================================
+   OVERLAY MODAL
+   ======================================================== */
 #overlay {
     position: absolute;
     top: 0;
@@ -596,12 +898,13 @@ body, html {
     align-items: center;
     pointer-events: auto;
     transition: opacity 0.3s ease;
+    z-index: 100;
 }
 
 #overlay.hidden {
-    opacity: 0;
-    pointer-events: none;
-    display: none;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    display: none !important;
 }
 
 .modal {
@@ -651,6 +954,219 @@ body, html {
 .candy-btn:active {
     transform: translateY(4px);
     box-shadow: 0 2px 0px #c71585, 0 4px 6px rgba(0,0,0,0.2);
+}
+
+/* ========================================================
+   VICTORY EPILOGUE & SEQUEL TEASER MODAL
+   ======================================================== */
+#victory-epilogue {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(30, 5, 25, 0.88) 0%, rgba(10, 0, 15, 0.96) 100%);
+    backdrop-filter: blur(14px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 250;
+    pointer-events: auto;
+    overflow-y: auto;
+    padding: 20px;
+    transition: opacity 0.4s ease;
+}
+
+#victory-epilogue.hidden {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    display: none !important;
+}
+
+.epilogue-card {
+    background: linear-gradient(180deg, #ffffff 0%, #fff2f8 100%);
+    border: 6px solid #ffd700;
+    border-radius: 36px;
+    box-shadow: 0 25px 60px rgba(255, 215, 0, 0.35), inset 0 2px 10px #ffffff;
+    max-width: 760px;
+    width: 95%;
+    max-height: 94vh;
+    overflow-y: auto;
+    padding: 20px 26px;
+    text-align: center;
+    animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.epilogue-crown {
+    font-size: 2.3rem;
+    animation: bounceCrown 1.5s infinite alternate ease-in-out;
+}
+
+.epilogue-title {
+    font-size: 1.8rem;
+    font-weight: 900;
+    background: linear-gradient(180deg, #ff1493 0%, #ff8c00 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 1px;
+}
+
+.epilogue-intro {
+    font-size: 1.05rem;
+    color: #4a2e35;
+    line-height: 1.5;
+}
+
+/* Cliffhanger Cinematic Box */
+.cliffhanger-box {
+    background: #1b101f;
+    border: 3px dashed #ff1744;
+    border-radius: 20px;
+    padding: 18px 22px;
+    color: #fce4ec;
+    text-align: left;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    margin: 6px 0;
+}
+
+.cliffhanger-badge {
+    background: #d50000;
+    color: #ffffff;
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+    margin-bottom: 8px;
+}
+
+.cliffhanger-box h3 {
+    color: #ff80ab;
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+}
+
+.cliffhanger-box p {
+    font-size: 0.95rem;
+    line-height: 1.45;
+    color: #e0e0e0;
+    margin-bottom: 10px;
+}
+
+.cliffhanger-quote {
+    border-left: 4px solid #ff4081;
+    padding-left: 12px;
+    font-style: italic;
+    color: #ffb2dd;
+    margin: 10px 0;
+    font-size: 1.02rem;
+}
+
+.cliffhanger-mystery {
+    font-size: 0.9rem !important;
+    color: #ffd54f !important;
+    font-weight: bold;
+    margin-bottom: 0 !important;
+}
+
+/* Upcoming Content Grid */
+.upcoming-content-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    width: 100%;
+    margin-top: 6px;
+}
+
+.upcoming-card {
+    border-radius: 22px;
+    padding: 16px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+}
+
+.dlc-card {
+    background: linear-gradient(135deg, #e1f5fe 0%, #b3e5fc 100%);
+    border: 3px solid #0288d1;
+}
+
+.sequel-card {
+    background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+    border: 3px solid #8e24aa;
+}
+
+.teaser-tag {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 900;
+    padding: 3px 10px;
+    border-radius: 10px;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+    align-self: flex-start;
+}
+
+.dlc-tag {
+    background: #0288d1;
+    color: white;
+}
+
+.sequel-tag {
+    background: #7b1fa2;
+    color: white;
+}
+
+.upcoming-card h4 {
+    font-size: 1rem;
+    color: #212121;
+    margin-bottom: 6px;
+}
+
+.upcoming-card p {
+    font-size: 0.85rem;
+    color: #424242;
+    line-height: 1.35;
+    margin-bottom: 10px;
+    flex: 1;
+}
+
+.teaser-meta {
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #455a64;
+    border-top: 1px solid rgba(0,0,0,0.1);
+    padding-top: 6px;
+}
+
+.epilogue-actions {
+    display: flex;
+    gap: 14px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.replay-btn {
+    background: linear-gradient(180deg, #ff9100 0%, #ff3d00 100%);
+    box-shadow: 0 6px 0px #bf360c, 0 10px 15px rgba(0,0,0,0.25);
+}
+
+.main-menu-return-btn {
+    background: linear-gradient(180deg, #00e676 0%, #00b0ff 100%);
+    box-shadow: 0 6px 0px #0081cb, 0 10px 15px rgba(0,0,0,0.25);
+}
+
+@keyframes bounceCrown {
+    0% { transform: translateY(0px) rotate(-4deg); }
+    100% { transform: translateY(-8px) rotate(4deg); }
 }
 
 @keyframes popIn {

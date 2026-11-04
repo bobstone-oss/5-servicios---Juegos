@@ -21,9 +21,35 @@ Una sombra desecante irrumpió desde las desérticas Salinas del Norte: **Lord S
 
 El jugador encarna a **Pipo**, el osito de gominola rojo más elástico y optimista del reino, en una expedición de tres etapas para recuperar las esquirlas, derrotar a Lord Salitre y purificar la Gran Fuente Dulce.
 
+#### **1.3 Clímax Narrativo, Epílogo y Cliffhanger de Continuidad**
+Tras vencer a Lord Salitre en la Cumbre de Chocolate, las tres esquirlas convergen sobre la Gran Fuente Dulce desatando una sinfonía de luz sacarina y cascadas de almíbar reluciente. Sin embargo, la aparente victoria no es el fin del viaje:
+* **El Terremoto Sacarino**: Cuando los habitantes de Dulcelandia comienzan las celebraciones, las profundidades de la fuente crujen violentamente. Una fractura sísmica de tonalidad salina se expande bajo el lecho de almíbar.
+* **La Revelación del Océano Amargo**: Se escucha la voz ominosa de una deidad ancestral del desierto salino: *"Salitre no era más que un grano de sal en nuestra marea... El Gran Océano Amargo consumirá cada átomo de vuestro azúcar"*.
+* **El Teaser de Expansión (DLC 1.5 - El Valle de los Masmelos Olvidados)**: Antes de la invasión total, Pipo debe viajar a las islas místicas del cielo para desenterrar los Cristales Efervescentes ancestrales que protegerán a Dulcelandia.
+* **El Teaser de Secuela (Sugar Sprint 2: El Despertar del Océano Amargo)**: Anuncio oficial in-game del segundo título de la saga con mecánicas acuáticas de jarabe, nuevos mundos y batallas cooperativas contra los Titanes de Salmuera.
+
 ---
 
-### **2. Arquitectura de Niveles y Diseño de Mundos**
+### **2. Menú Principal, Tienda de Skins y UI/UX**
+
+#### **2.1 Menú Principal de Dulcelandia**
+* **Estética**: Inspirada fielmente en la interfaz jugosa y redondeada de *Candy Crush Saga* con un gran medallón central y tipografía festiva 3D.
+* **Elementos Centrales**:
+  * **Título Prominente**: *"SUGAR SPRINT: La Búsqueda del Cristal de Caramelo"* en gradientes fucsia y turquesa esmaltado.
+  * **Botón 'JUGAR'**: Abre de inmediato el mapa de islas navegable.
+  * **Botón 'TIENDA'**: Abre el vestidor interactivo de Pipo para desbloquear atuendos con Bolitas de Anís.
+  * **Botón 'OPCIONES'**: Despliega el panel de sonido y volumen con pruebas de audio procedural.
+
+#### **2.2 Tienda de Skins Dulces**
+Permite equipar y comprar variantes cosméticas de la gominola de Pipo mediante la moneda *Bolitas de Anís*:
+1. **Pipo Fresa Real**: Sabor fresa original, translúcido con brillo especular (Gratis / Equipado).
+2. **Pipo Menta Fresca**: Color verde esmeralda con fragancia refrescante ($40 \text{ monedas}$).
+3. **Pipo Mora Azul**: Caramelo masticable azul índigo con destellos mágicos ($75 \text{ monedas}$).
+4. **Pipo Oro Glaseado**: Baño de sirope de miel pura y purpurina dorada ($150 \text{ monedas}$).
+
+---
+
+### **3. Arquitectura de Niveles y Diseño de Mundos**
 
 ```
 +-----------------------------------------------------------------------------------+
@@ -36,145 +62,47 @@ El jugador encarna a **Pipo**, el osito de gominola rojo más elástico y optimi
 +-----------------------------------------------------------------------------------+
 ```
 
-#### **2.1 Mundo 1: Bosque de Algodón de Azúcar**
+#### **3.1 Mundo 1: Bosque de Algodón de Azúcar**
 * **Tema y Estética**: Entorno primaveral y esponjoso. Flores de chupachups esmaltados, rocío de sirope transparente y copas de árboles pastel.
-* **Paleta de Colores**:
-  * Rosa Chicle (`#FF69B4`)
-  * Celeste Pastel (`#AEC6CF`)
-  * Blanco Nube (`#F8F9FA`)
-  * Verde Menta (`#98FF98`)
-* **Mecánicas e Interacciones**:
-  * **Camas Elásticas de Masmelo**: Permiten realizar saltos gigantescos con respuesta sonora elástica.
-  * **Puentes de Regaliz Trenzado**: Balancines dinámicos que vibran bajo las pisadas de Pipo.
-  * **Ráfagas de Viento Dulce**: Zonas de flujo donde el aire rosado empuja al jugador suavemente en una dirección.
-* **Curva de Aprendizaje**: Tutorial invisible de movimiento de 8 direcciones, salto básico y rebote de gominola.
+* **Paleta de Colores**: Rosa Chicle (`#FF69B4`), Celeste Pastel (`#AEC6CF`), Blanco Nube (`#F8F9FA`), Verde Menta (`#98FF98`).
+* **Mecánicas**: Camas elásticas de masmelo, puentes colgantes de regaliz trenzado y corrientes de viento dulce.
 
-#### **2.2 Mundo 2: Río de Gominola y Rocas Caramelo**
+#### **3.2 Mundo 2: Río de Gominola y Rocas Caramelo**
 * **Tema y Estética**: Cañón translúcido de sabores. Ríos viscosos de almíbar que reflejan la luz como prismas de gelatina.
-* **Paleta de Colores**:
-  * Lima Brillante (`#32CD32`)
-  * Naranja Traslúcido (`#FF7F50`)
-  * Ámbar Esmerilado (`#FFBF00`)
-  * Violeta Arándano (`#8A2BE2`)
-* **Mecánicas e Interacciones**:
-  * **Balsas de Caramelo sobre Jarabe**: Plataformas móviles que flotan sobre líquido lento.
-  * **Estalactitas de Salmuera y Azúcar Quebradizo**: Picos que caen cuando el jugador pasa por debajo.
-  * **Charcos de Jalea Viscosa**: Áreas que reducen la velocidad de desplazamiento a la mitad y requieren saltos repetidos para escapar.
+* **Paleta de Colores**: Lima Brillante (`#32CD32`), Naranja Traslúcido (`#FF7F50`), Ámbar Esmerilado (`#FFBF00`), Violeta Arándano (`#8A2BE2`).
+* **Mecánicas**: Balsas de caramelo flotante, estalactitas de azúcar quebradizo y charcos de jalea viscosa.
 
-#### **2.3 Mundo 3: Cumbre de Chocolate Negro (Clímax y Batalla)**
+#### **3.3 Mundo 3: Cumbre de Chocolate Negro (Clímax y Batalla)**
 * **Tema y Estética**: Volcán gastronómico dramático. Cascadas de cacao trufa caliente, vetas de caramelo ardiente y nubes de canela.
-* **Paleta de Colores**:
-  * Marrón Trufa (`#3D2314`)
-  * Dorado Hoja de Oro (`#FFD700`)
-  * Carmesí Intenso (`#DC143C`)
-  * Sal Gris Obscura (`#4A4A4A`)
-* **Mecánicas e Interacciones**:
-  * **Suelo de Barquillo Crujiente**: Placas de galleta con temporizador de fractura (se destruyen tras 1.5 segundos de ser pisadas).
-  * **Géiseres de Canela**: Chorros de vapor caliente periódicos que dañan a Pipo si no calcula el tiempo.
-  * **Cascadas de Cacao Fundido**: Ríos letales donde caer supone la reaparición inmediata en el Puesto de Bastón de Caramelo.
+* **Paleta de Colores**: Marrón Trufa (`#3D2314`), Dorado Hoja de Oro (`#FFD700`), Carmesí Intenso (`#DC143C`), Sal Gris Obscura (`#4A4A4A`).
+* **Mecánicas**: Suelo de barquillo crujiente con temporizador de colapso, géiseres de canela y combate multicapa contra Lord Salitre.
 
 ---
 
-### **3. Especificación de Personajes y Entidades**
+### **4. Especificación de Personajes y Entidades**
 
 | Personaje | Rol | Aspecto / Material Shader | Mecánica Especial / Ataque |
 | :--- | :--- | :--- | :--- |
-| **Pipo** | Protagonista | Osito Gominola Rojo Fresa, Subsurface Scattering, Capa de Celofán metalizado | *Rebote de Gelatina* (Ground Pound), *Chicletazo* (Agarrador elástico) |
+| **Pipo** | Protagonista | Osito Gominola Rojo Fresa, Bigote y Barba de Chocolate, Capa de Celofán metalizado | *Rebote de Gelatina* (Ground Pound), *Chicletazo* (Agarrador elástico) |
 | **Lord Salitre** | Villano / Boss Final | Cristal de Sal Marina grisáceo opaco, Armadura de Carbón Dulce | *Ráfaga Salina* (Rayos deshidratantes), Invocación de Minions de Sal |
 | **Minions Salinos** | Enemigos Menores | Cubos de sal áspera con púas | Embestida rectilínea simple |
 
-#### **3.1 Protagonista: Pipo (Aventurero de Gominola Calvo con Barba)**
-* **Arquetipo y Aspecto**: Figura de gominola sabor fresa hiperbrillante y translúcida con cabeza calva reflectante de caramelo pulido, barba prominente y bigote esculpido en chocolate y regaliz, ojos de azúcar glaseado y capa dorada de papel de bombón con física reactiva.
-* **Entorno y Plataformas**: Islas flotantes tridimensionales suspendidas sobre un vasto océano de nubes esponjosas de malvavisco y confeti en deriva continua.
-* **Controles Móviles & Touch**: Soporte completo para dispositivos móviles mediante joystick táctil dinámico 360° y botones dedicados en pantalla táctil con respuesta inmediata.
-* **Dimensiones Hitbox**: Cápsula de $0.8 \times 1.2$ unidades.
-* **Propiedades de Física**:
-  * Velocidad Máxima: $8.0 \text{ unidades/s}$.
-  * Aceleración: $30.0 \text{ unidades/s}^2$.
-  * Fricción de Suelo: $12.0$.
-  * Fuerza de Salto Base: $10.0 \text{ m/s}$.
-  * Gravedad Personalizada: $25.0 \text{ m/s}^2$.
-* **Mecánicas Clave**:
-  1. **Rebote de Gelatina (Slam)**: Al presionar 'Barra Espaciadora' o botón táctil de salto en el aire, Pipo se comprime y cae velozmente. Al golpear superficies o enemigos, inflige daño de área y sale despedido a doble altura.
-  2. **Chicletazo (Elastic Whip)**: Estira su brazo elástico hacia el frente (rango: 4.0 unidades) para recoger ítems distantes o activar palancas de caramelo duro.
-
-#### **3.2 Villano: Lord Salitre**
-* **Fases del Boss**:
-  * **Fase 1**: Lanza proyectiles salinos directos. Pipo debe esquivarlos y usar el *Chicletazo* para derribar pilares de azúcar que le caigan encima.
-  * **Fase 2**: Cubre el suelo con charcos de deshidratación salina. Invoca Minions de Sal.
-  * **Fase 3**: Lanza la *Gran Ráfaga Salina*. Pipo debe usar su escudo de celofán brillante desvío reflectante para devolver el rayo y purificar a Lord Salitre.
-
 ---
 
-### **4. Mecánicas de Juego, Economía e Interacción**
+### **5. Especificación de la Expansión (DLC 1.5) y la Secuela (Sugar Sprint 2)**
 
-#### **4.1 Meta-Progresión, Desbloqueo de Islas y Mini-Historias Cinemáticas**
-El juego incorpora una progresión dual tanto por superación natural como por economía circular con persistencia en `localStorage: sugarsprint_save`:
-* **Desbloqueo Progresivo Automático**: Al completar con éxito una isla, la siguiente se desbloquea de manera automática e inmediata, otorgando $+30 \text{ Bolitas de Anís}$ de bonificación.
-* **Desbloqueo por Moneda Alternativo**: En el Mapa de Dulcelandia, los jugadores pueden adelantar el desbloqueo o revisitar fases mediante sus ganancias acumuladas:
-  * *Isla 1 (Bosque de Algodón)*: Desbloqueada por defecto ($0 \text{ monedas}$).
-  * *Isla 2 (Río de Gominola)*: Desbloqueable por $50 \text{ Bolitas de Anís}$.
-  * *Isla 3 (Cumbre de Chocolate)*: Desbloqueable por $120 \text{ Bolitas de Anís}$.
+#### **5.1 Expansión DLC 1.5: "El Valle de los Masmelos Olvidados"**
+* **Contexto**: Ambientado en el estrato aéreo superior de Dulcelandia, sobre las copas de nubes de azúcar quemado.
+* **Contenido Clave**:
+  * 5 nuevas islas flotantes interconectadas por tirolinas de chicle estirable.
+  * Nueva mecánica de triple rebote sincronizado sobre almohadillas de nube de merengue.
+  * 3 nuevas apariencias coleccionables: *Pipo Algodón Nube*, *Pipo Regaliz Negro* y *Pipo Caramelo Salado Purificado*.
+  * 15 nuevas Chispas de Luz Sacarina ocultas en enigmas de plataformas.
 
-#### **4.2 Estructura Narrativa por Isla (Acción, Aventura, Drama)**
-Cada isla presenta una breve cinemática ilustrada con el avatar del héroe calvo y barbudo antes de iniciar la partida:
-1. **Isla 1 (Acción & Coraje - ¡El Bosque en Peligro!)**:
-   * *Conflicto*: La niebla amarga corroe los árboles de algodón dulce y apaga la elasticidad de los masmelos.
-   * *Acción*: Pipo ajusta su capa dorada con coraje: *"¡No permitiré que la amargura marchite nuestro hogar!"*.
-2. **Isla 2 (Aventura & Misterio - Los Rápidos de Ámbar Traicioneros)**:
-   * *Conflicto*: El río sagrado de jarabe se cuaja en estalactitas de salmuera punzantes que amenazan con deshidratar a los seres de gominola.
-   * *Aventura*: Pipo navega corrientes viscosas y sortea trampas prismáticas en pos de la segunda esquirla: *"¡Aguantad, amigos, el almíbar volverá a fluir!"*.
-3. **Isla 3 (Drama & Clímax Final - La Confrontación contra Lord Salitre)**:
-   * *Conflicto*: En la cima del volcán de cacao fundido, Lord Salitre alza su cetro para desatar la desecación total del reino.
-   * *Drama*: Diálogo tenso entre la opacidad estéril y el resplandor azucarado. Pipo responde con heroísmo: *"¡Mientras quede un grano de azúcar, la esperanza jamás será amarga!"*.
-
-#### **4.3 Panel de Ajustes y Control de Volumen**
-* Control de ganancia maestro en Web Audio API (`GainNode`) con slider de volumen porcentual (0% a 100%).
-* Opción de silencio total (Mute toggle) y botón de prueba sonora instantánea.
-* Persistencia automática de las preferencias sonoras en `localStorage: sugarsprint_volume`.
-
-#### **4.2 Coleccionables**
-* **Bolitas de Anís (Moneda Común)**:
-  * Valor: +10 puntos y moneda de curso legal para desbloqueo de islas.
-  * Ubicación: Línea dorada de guiado por todo el nivel.
-* **Chispas Dulces (Puntos Clave)**:
-  * Cantidad: 3 por nivel.
-  * Función: Desbloquear skins especiales en el menú principal (Pipo Menta, Pipo Mora Azul, Pipo Dorado).
-* **Fresas Glaseadas (Curación)**:
-  * Función: Restaura 1 Corazón de Azúcar de la **Barra de Dulzor** (Máximo 3 Corazones).
-
-#### **4.2 Barreras y Checkpoints**
-* **Barreras de Regaliz**: Puertas de caramelo reforzado que requieren realizar un *Rebote de Gelatina* sobre el interruptor principal.
-* **Puestos de Bastón de Caramelo (Checkpoints)**: Postes en espiral blanca y roja que se encienden con chispas de confeti al ser tocados. Guardan la posición del jugador inmediatamente.
-
----
-
-### **5. Juicy Game Feel, VFX, Optimización y Shaders**
-
-#### **5.1 Técnicas de "Juicy Game Feel"**
-1. **Squash & Stretch Dinámico**:
-   * Al saltar: Escala $(X: 0.7, Y: 1.4, Z: 0.7)$.
-   * Al aterrizar: Escala $(X: 1.4, Y: 0.6, Z: 1.4)$.
-   * Interpolación elástica tipo $EaseOutElastic$.
-2. **Sistema de Partículas de Confeti**:
-   * Al recoger Bolitas de Anís: Explosión radial de 15 micro-partículas cuadradas multicolor (`#FF1493`, `#00FFFF`, `#FFD700`).
-   * Al aterrizar con *Rebote de Gelatina*: Anillo de ondas de azúcar en polvo (`#FFFFFF`).
-
-#### **5.2 Mejoras de Rendimiento y Optimización Gráfica**
-* **Reutilización de Geometrías y Materiales (Instancing / Shared Assets)**: Instancias compartidas para monedas, chispas y plataformas de nivel, minimizando draw calls.
-* **Ajuste de Pixel Ratio**: `renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))` para evitar sobrecoste en pantallas 4K y móviles de alta densidad.
-* **Frustum Culling y Sombras Optimizadas**: Mapas de sombra acotados a la zona jugable con `PCFSoftShadowMap` para sombras suaves y de alto rendimiento.
-* **Garbage Collection Optimization**: Reutilización de vectores temporales (`THREE.Vector3`) en el loop de actualización (`animate`) para mantener 60 FPS estables sin hipos de memoria.
-
-#### **5.3 Renderizado y Shaders en Three.js**
-* **Material Gominola (Pipo)**:
-  * `MeshPhysicalMaterial` con `roughness: 0.1`, `metalness: 0.1`, `transmission: 0.6`, `ior: 1.4`, `clearcoat: 1.0`, `thickness: 0.8`.
-* **Iluminación**:
-  * Luz Ambiental pastel suave (`#FFF0F5`, intensidad 0.8).
-  * Luz Direccional Principal (`#FFFFFF`, intensidad 1.5) con sombras suavemente filtradas (*PCFSoftShadowMap*).
-
-#### **5.4 Especificación de Audio Sintético (Web Audio API)**
-* **Jump Sound**: Frecuencia ascendente rápida de $150 \text{ Hz}$ a $600 \text{ Hz}$ tipo sine wave con envolvente corta ($0.15 \text{ s}$).
-* **Coin Pickup**: Arpegio rápido de dos tonos ($1046 \text{ Hz}$ - C6 y $1318 \text{ Hz}$ - E6) tipo triangle wave.
-* **Bounce Sound**: Frecuencia descendente-ascendente elástica tipo boing.
-* **Hit Damage**: Ruido blanco filtrado paso bajo con envolvente rápida.
+#### **5.2 Secuela: "Sugar Sprint 2: El Despertar del Océano Amargo"**
+* **Sinopsis**: El Gran Océano Amargo ha comenzado su crecida marina, anegando las costas del reino bajo mareas de salmuera ácida. Pipo construye un barco de barquillo acorazado y zarpa hacia las profundidades.
+* **Nuevas Mecánicas Planificadas**:
+  * **Buceo en Almíbar Líquido**: Físicas de natación con flotabilidad elástica.
+  * **Armas de Caramelo Efervescente**: Burbujas de soda efervescentes para neutralizar las mareas de salmuera.
+  * **Modo Cooperativo para 2 Jugadores**: Pipo junto a su compañera "Lola" (Osita de Gominola de Limón).
+  * **Jefes Titánicos**: Los 4 Generales de Salmuera y el Monarca del Océano Amargo.
